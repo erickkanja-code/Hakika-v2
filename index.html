@@ -248,5 +248,19 @@
   </ul>
 </footer>
 <div class="toast" id="toast"></div>
+<script>
+function handleRelease(){
+  var btn=document.getElementById('dc-btn');
+  if(btn.classList.contains('done'))return;
+  btn.classList.add('done');
+  btn.textContent='₦180,000 RELEASED TO MTN MOMO ✓';
+  document.getElementById('badge-wait').style.display='none';
+  document.getElementById('badge-done').style.display='inline-block';
+  var t=document.getElementById('toast');
+  t.textContent='₦180,000 landed in Mrs. Adaeze\'s MTN MoMo';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},3500);
+}
+</script>
 </body>
 </html>
