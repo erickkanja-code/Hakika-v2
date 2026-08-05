@@ -7,6 +7,96 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0D0D0D;--white:#F2F0EB;--amber:#F0A500;--gray:#888580;--dark2:#161614;--border:#2A2A27;--wborder:#D5D2CB}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(13,13,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
+.logo{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--white);text-decoration:none}
+.logo span{color:var(--amber)}
+.nav-r{display:flex;align-items:center;gap:32px}
+.nav-r a{font-size:14px;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-r a:hover,.nav-r a.active{color:var(--white)}
+.nav-btn{background:var(--amber)!important;color:var(--black)!important;padding:10px 22px;border-radius:100px;font-weight:600!important;font-size:14px}
+.inner{max-width:1200px;margin:0 auto}
+
+/* HERO */
+.page-hero{padding:160px 52px 100px;background:var(--black)}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--gray);font-size:12px;padding:6px 16px;border-radius:100px;margin-bottom:40px;letter-spacing:.03em}
+.page-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.page-hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,9vw,120px);line-height:.92;letter-spacing:-3px;color:var(--white);max-width:860px;margin-bottom:48px}
+.page-hero h1 span{color:var(--amber)}
+.page-hero-sub{font-size:19px;font-weight:300;color:var(--gray);max-width:520px;line-height:1.7;border-top:1px solid var(--border);padding-top:40px}
+
+/* FAQ CATEGORIES */
+.faq-section{background:var(--white);padding:120px 52px}
+.faq-inner{max-width:1200px;margin:0 auto}
+.faq-category{margin-bottom:80px}
+.faq-category:last-child{margin-bottom:0}
+.cat-label{font-family:'Archivo Black',sans-serif;font-size:11px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
+.cat-label::after{content:'';flex:1;height:1px;background:var(--wborder)}
+.faq-item{border-bottom:1px solid var(--wborder)}
+.faq-item:first-of-type{border-top:1px solid var(--wborder)}
+.faq-q{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:28px 0;cursor:pointer;list-style:none;-webkit-appearance:none}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q-text{font-family:'Archivo Black',sans-serif;font-size:clamp(17px,2vw,22px);color:var(--black);letter-spacing:-.3px;line-height:1.15;flex:1}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--wborder);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .25s;color:#888}
+.faq-icon svg{transition:transform .25s}
+details[open] .faq-icon{background:var(--black);border-color:var(--black);color:var(--white)}
+details[open] .faq-icon svg{transform:rotate(45deg)}
+.faq-a{padding:0 0 28px;max-width:680px}
+.faq-a p{font-size:16px;color:#4A4845;line-height:1.75;margin-bottom:14px}
+.faq-a p:last-child{margin-bottom:0}
+.faq-a p strong{color:var(--black);font-weight:600}
+.faq-a ul{margin:12px 0 14px 20px}
+.faq-a ul li{font-size:15px;color:#4A4845;line-height:1.7;margin-bottom:6px}
+.faq-highlight{background:#FFF8EC;border-left:3px solid var(--amber);padding:14px 18px;border-radius:0 6px 6px 0;margin-top:4px}
+.faq-highlight p{font-size:14px;color:#5A4A1E;margin-bottom:0}
+.faq-highlight strong{color:#3A2E0E}
+
+/* CONTACT */
+.contact-section{background:var(--dark2);padding:100px 52px}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-left h2{font-family:'Archivo Black',sans-serif;font-size:clamp(36px,4.5vw,60px);letter-spacing:-1.5px;line-height:.97;color:var(--white);margin-bottom:20px}
+.contact-left p{font-size:16px;color:var(--gray);line-height:1.72;margin-bottom:32px}
+.contact-link{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--black);padding:14px 28px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;text-decoration:none;transition:opacity .2s}
+.contact-link:hover{opacity:.85}
+.contact-right{padding-top:8px}
+.contact-item{padding:24px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:32px 1fr;gap:16px;align-items:flex-start}
+.contact-item:first-child{padding-top:0}
+.contact-item:last-child{border-bottom:none}
+.contact-item-icon{margin-top:2px}
+.contact-item-icon svg{width:20px;height:20px;stroke:var(--amber)}
+.contact-item-title{font-family:'Archivo Black',sans-serif;font-size:16px;color:var(--white);margin-bottom:4px;letter-spacing:-.2px}
+.contact-item-desc{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* CTA STRIP */
+.cta-strip{background:var(--amber);padding:80px 52px}
+.cta-strip-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.cta-strip h2{font-family:'Archivo Black',sans-serif;font-size:clamp(32px,4vw,56px);letter-spacing:-1.5px;line-height:.97;color:var(--black)}
+.btn-dark{background:var(--black);color:var(--amber);padding:15px 32px;border:none;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s}
+.btn-dark:hover{opacity:.85}
+
+footer{background:var(--black);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
+.f-logo{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--white)}
+.f-logo span{color:var(--amber)}
+.f-note{font-size:13px;color:var(--gray)}
+.f-links{display:flex;gap:24px;list-style:none}
+.f-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--white)}
+
+@media(max-width:960px){
+  nav{padding:16px 24px}
+  .nav-r a:not(.nav-btn){display:none}
+  .page-hero,.faq-section,.contact-section,.cta-strip{padding-left:24px;padding-right:24px}
+  .page-hero{padding-top:130px;padding-bottom:60px}
+  .contact-inner{grid-template-columns:1fr;gap:48px}
+  .cta-strip-inner{flex-direction:column;align-items:flex-start}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
+}
+</style>
 </head>
 <body>
 
