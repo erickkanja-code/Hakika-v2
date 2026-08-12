@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Early Access — Hakika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0D0D0D;--white:#F2F0EB;--amber:#F0A500;--gray:#888580;--dark2:#161614;--border:#2A2A27;--wborder:#D5D2CB;--error:#D94F3D}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(13,13,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
+.logo{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--white);text-decoration:none}
+.logo span{color:var(--amber)}
+.nav-r{display:flex;align-items:center;gap:32px}
+.nav-r a{font-size:14px;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-r a:hover{color:var(--white)}
+.nav-btn{background:var(--amber)!important;color:var(--black)!important;padding:10px 22px;border-radius:100px;font-weight:600!important;font-size:14px}
+
+/* LAYOUT */
+.page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+
+/* LEFT PANEL */
+.left{background:var(--amber);padding:140px 64px 80px;display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:0;height:100vh}
+.left-top{}
+.left-tag{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(0,0,0,.15);color:rgba(0,0,0,.5);font-size:12px;padding:6px 16px;border-radius:100px;margin-bottom:44px;letter-spacing:.03em}
+.left h1{font-family:'Archivo Black',sans-serif;font-size:clamp(44px,5.5vw,72px);line-height:.93;letter-spacing:-2.5px;color:var(--black);margin-bottom:32px}
+.left-sub{font-size:17px;color:rgba(0,0,0,.55);line-height:1.7;max-width:380px;font-weight:300}
+.left-points{margin-top:48px;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(0,0,0,.12)}
+.lp{display:flex;align-items:flex-start;gap:14px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.12)}
+.lp-icon{width:32px;height:32px;background:rgba(0,0,0,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.lp-icon svg{width:16px;height:16px;stroke:var(--black)}
+.lp-text strong{display:block;font-size:14px;font-weight:600;color:var(--black);margin-bottom:2px}
+.lp-text span{font-size:13px;color:rgba(0,0,0,.5);line-height:1.5}
+.left-bottom{font-size:12px;color:rgba(0,0,0,.4)}
+
+/* RIGHT PANEL */
+.right{background:var(--black);padding:140px 64px 80px;overflow-y:auto}
+.right-inner{max-width:480px}
+.form-heading{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.8px;color:var(--white);margin-bottom:8px}
+.form-sub{font-size:15px;color:var(--gray);margin-bottom:48px;line-height:1.6}
+
+/* FORM */
+.field{margin-bottom:24px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:12px;font-weight:500;color:var(--gray);letter-spacing:.04em;margin-bottom:8px}
+input,select,textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--white);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+input::placeholder,textarea::placeholder{color:#444}
+input:focus,select:focus,textarea:focus{border-color:var(--amber)}
+input.error,select.error{border-color:var(--error)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+select option{background:var(--black);color:var(--white)}
+textarea{resize:vertical;min-height:100px;line-height:1.6}
+.field-error{font-size:12px;color:var(--error);margin-top:6px;display:none}
+.field-error.show{display:block}
+
+/* RADIO GROUP */
+.radio-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.radio-opt{position:relative}
+.radio-opt input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+.radio-label{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:13px 16px;cursor:pointer;transition:all .2s;font-size:14px;color:var(--gray)}
+.radio-opt input[type="radio"]:checked + .radio-label{border-color:var(--amber);background:rgba(240,165,0,.08);color:var(--white)}
+.radio-dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.radio-opt input[type="radio"]:checked + .radio-label .radio-dot{border-color:var(--amber);background:var(--amber)}
+.radio-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--black);opacity:0;transition:opacity .2s}
+.radio-opt input[type="radio"]:checked + .radio-label .radio-dot::after{opacity:1}
+
+/* DIVIDER */
+.form-divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+
+/* SUBMIT */
+.submit-btn{width:100%;background:var(--amber);color:var(--black);border:none;border-radius:100px;padding:17px;font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:opacity .2s;margin-top:8px}
+.submit-btn:hover{opacity:.88}
+.submit-btn:disabled{opacity:.5;cursor:default}
+.form-disclaimer{font-size:12px;color:#444;margin-top:16px;line-height:1.6;text-align:center}
+
+/* SUCCESS STATE */
+.success-state{display:none;text-align:center;padding:48px 0}
+.success-icon{width:72px;height:72px;background:rgba(240,165,0,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px}
+.success-icon svg{width:36px;height:36px;stroke:var(--amber)}
+.success-title{font-family:'Archivo Black',sans-serif;font-size:32px;letter-spacing:-1px;color:var(--white);margin-bottom:12px;line-height:1}
+.success-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:360px;margin:0 auto 36px}
+.success-back{display:inline-block;background:var(--amber);color:var(--black);padding:14px 28px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;text-decoration:none;transition:opacity .2s}
+.success-back:hover{opacity:.85}
+.success-detail{margin-top:32px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:20px 24px;text-align:left}
+.success-detail-title{font-size:11px;font-weight:500;color:var(--gray);letter-spacing:.06em;margin-bottom:14px}
+.success-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.success-row:last-child{border-bottom:none}
+.success-row-key{color:var(--gray)}
+.success-row-val{color:var(--white);font-weight:500;text-align:right;max-width:220px}
+
+footer{background:var(--black);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
+.f-logo{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--white)}
+.f-logo span{color:var(--amber)}
+.f-note{font-size:13px;color:var(--gray)}
+.f-links{display:flex;gap:24px;list-style:none}
+.f-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--white)}
+
+@media(max-width:900px){
+  .page{grid-template-columns:1fr}
+  .left{position:relative;height:auto;padding:130px 28px 56px}
+  .right{padding:56px 28px 80px}
+  .right-inner{max-width:100%}
+  nav{padding:16px 24px}
+  .nav-r a:not(.nav-btn){display:none}
+  .field-row{grid-template-columns:1fr}
+  .radio-group{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:14px;text-align:center;padding:28px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Hakika<span>.</span></a>
+  <div class="nav-r">
+    <a href="how-it-works.html">How it works</a>
+    <a href="faq.html">FAQ</a>
+    <a href="early-access.html" class="nav-btn">Get early access</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="left-top">
+      <div class="left-tag">Limited spots available</div>
+      <h1>Join Hakika<br>early access.</h1>
+      <p class="left-sub">Be among the first to send money home with real certainty. Early users help shape the product and get priority access at launch.</p>
+      <div class="left-points">
+        <div class="lp">
+          <div class="lp-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="lp-text">
+            <strong>Priority access at launch</strong>
+            <span>Early access users are first through the door when we go live in Kenya.</span>
+          </div>
+        </div>
+        <div class="lp">
+          <div class="lp-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="lp-text">
+            <strong>Your feedback shapes the product</strong>
+            <span>We talk to every early access user. What you tell us gets built.</span>
+          </div>
+        </div>
+        <div class="lp">
+          <div class="lp-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="lp-text">
+            <strong>Reduced fees during early access</strong>
+            <span>Early users benefit from lower transfer fees throughout the launch period.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="left-bottom">Hakika · Launching Kenya 2025</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="right-inner">
+
+      <!-- FORM -->
+      <div id="form-wrap">
+        <div class="form-heading">Tell us about yourself.</div>
+        <p class="form-sub">Takes about two minutes. We use this to prioritise access and make sure Hakika works for your situation.</p>
+
+        <div class="field field-row">
+          <div>
+            <label>First name</label>
+            <input type="text" id="firstName" placeholder="Grace">
+            <div class="field-error" id="firstName-err">Enter your first name</div>
+          </div>
+          <div>
+            <label>Last name</label>
+            <input type="text" id="lastName" placeholder="Wanjiku">
+            <div class="field-error" id="lastName-err">Enter your last name</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email address</label>
+          <input type="email" id="email" placeholder="grace@email.com">
+          <div class="field-error" id="email-err">Enter a valid email address</div>
+        </div>
+
+        <div class="field">
+          <label>Where are you based?</label>
+          <select id="country">
+            <option value="" disabled selected>Select your country</option>
+            <optgroup label="Common">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Arab Emirates</option>
+            </optgroup>
+            <optgroup label="Other">
+            <option>Qatar</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Netherlands</option>
+            <option>Australia</option>
+            <option>Other</option>
+            </optgroup>
+          </select>
+          <div class="field-error" id="country-err">Select your country</div>
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="field">
+          <label>How often do you send money to Kenya?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="frequency" id="freq1" value="Weekly">
+              <label class="radio-label" for="freq1"><span class="radio-dot"></span>Weekly</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="frequency" id="freq2" value="Monthly">
+              <label class="radio-label" for="freq2"><span class="radio-dot"></span>Monthly</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="frequency" id="freq3" value="Every few months">
+              <label class="radio-label" for="freq3"><span class="radio-dot"></span>Every few months</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="frequency" id="freq4" value="Occasionally">
+              <label class="radio-label" for="freq4"><span class="radio-dot"></span>Occasionally</label>
+            </div>
+          </div>
+          <div class="field-error" id="frequency-err">Pick how often you send</div>
+        </div>
+
+        <div class="field">
+          <label>What do you mainly send money for?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur1" value="Family support">
+              <label class="radio-label" for="pur1"><span class="radio-dot"></span>Family support</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur2" value="School fees">
+              <label class="radio-label" for="pur2"><span class="radio-dot"></span>School fees</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur3" value="Medical bills">
+              <label class="radio-label" for="pur3"><span class="radio-dot"></span>Medical bills</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur4" value="Business / investment">
+              <label class="radio-label" for="pur4"><span class="radio-dot"></span>Business / investment</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur5" value="Construction">
+              <label class="radio-label" for="pur5"><span class="radio-dot"></span>Construction</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="purpose" id="pur6" value="Mixed">
+              <label class="radio-label" for="pur6"><span class="radio-dot"></span>Mixed</label>
+            </div>
+          </div>
+          <div class="field-error" id="purpose-err">Pick a primary purpose</div>
+        </div>
+
+        <div class="field">
+          <label>Have you ever sent money that wasn't used the way you intended? <span style="color:#555;font-weight:400">(optional)</span></label>
+          <textarea id="story" placeholder="Tell us briefly what happened. This helps us understand the real problem."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="handleSubmit()">SUBMIT REQUEST</button>
+        <p class="form-disclaimer">Your details are never shared or sold. We will only contact you about Hakika early access.</p>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-state" id="success-wrap">
+        <div class="success-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="success-title">Details captured.</div>
+        <p class="success-sub">We have your information and will be in touch when your early access spot is ready for your country. Watch your inbox.</p>
+        <a href="index.html" class="success-back">BACK TO HAKIKA</a>
+        <div class="success-detail" id="success-detail">
+          <div class="success-detail-title">WHAT WE RECEIVED</div>
+          <div id="success-rows"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">Hakika<span>.</span></div>
+  <p class="f-note">Nigeria · Ghana · Kenya · Rwanda · Launching 2025.</p>
+  <ul class="f-links">
+    <li><a href="how-it-works.html">How it works</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></li>
+  </ul>
+</footer>
+
+<script>
+function handleSubmit(){
+  var valid=true;
+
+  function check(id,errId,testFn){
+    var el=document.getElementById(id);
+    var err=document.getElementById(errId);
+    if(!testFn(el)){
+      el.classList.add('error');
+      err.classList.add('show');
+      if(valid)el.focus();
+      valid=false;
+    } else {
+      el.classList.remove('error');
+      err.classList.remove('show');
+    }
+  }
+
+  check('firstName','firstName-err',function(el){return el.value.trim().length>0});
+  check('lastName','lastName-err',function(el){return el.value.trim().length>0});
+  check('email','email-err',function(el){return el.value.trim().includes('@')&&el.value.trim().includes('.')});
+  check('country','country-err',function(el){return el.value!==''});
+
+  var freq=document.querySelector('input[name="frequency"]:checked');
+  var freqErr=document.getElementById('frequency-err');
+  if(!freq){freqErr.classList.add('show');valid=false;}
+  else{freqErr.classList.remove('show');}
+
+  var purp=document.querySelector('input[name="purpose"]:checked');
+  var purpErr=document.getElementById('purpose-err');
+  if(!purp){purpErr.classList.add('show');valid=false;}
+  else{purpErr.classList.remove('show');}
+
+  if(!valid)return;
+
+  var data={
+    'Name': document.getElementById('firstName').value.trim()+' '+document.getElementById('lastName').value.trim(),
+    'Email': document.getElementById('email').value.trim(),
+    'Based in': document.getElementById('country').value,
+    'Sends money': freq.value,
+    'Mainly for': purp.value
+  };
+
+  var rows='';
+  Object.keys(data).forEach(function(k){
+    rows+='<div class="success-row"><span class="success-row-key">'+k+'</span><span class="success-row-val">'+data[k]+'</span></div>';
+  });
+  document.getElementById('success-rows').innerHTML=rows;
+
+  document.getElementById('form-wrap').style.display='none';
+  document.getElementById('success-wrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.querySelectorAll('input,select').forEach(function(el){
+  el.addEventListener('input',function(){
+    el.classList.remove('error');
+  });
+});
+</script>
+</body>
+</html>
