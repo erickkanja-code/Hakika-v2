@@ -179,6 +179,33 @@ footer{background:var(--black);padding:40px 52px;display:flex;align-items:center
   .sc-card{padding:40px 28px}
 }
 @media(prefers-reduced-motion:reduce){.ticker-inner{animation:none}}
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  max-width: 100%;
+}
+@media(max-width:960px){
+  .hero-bottom,
+  .demo-inner,
+  .st-cols,
+  .sc-grid,
+  .steps {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-bottom > *,
+  .demo-inner > *,
+  .st-cols > *,
+  .sc-grid > *,
+  .steps > * {
+    min-width: 0;
+  }
+}
 </style>
 </head>
 <body>
