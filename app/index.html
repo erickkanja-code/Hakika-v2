@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send a payment | HakikaSend</title>
+<meta name="description" content="Lock money for a purpose. It is released when the proof arrives.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body>
+<div class="testnet"><b>TESTNET</b>Test funds on the Stellar test network. No real money moves.</div>
+<nav>
+  <a href="/" class="logo"><svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="42" height="140" fill="#F2F0EB"/><rect x="128" y="30" width="42" height="140" fill="#F2F0EB"/><circle cx="100" cy="100" r="41" fill="#0D0D0D"/><circle cx="100" cy="100" r="33" fill="#F0A500"/></svg>HakikaSend</a>
+  <div class="nav-r">
+    <a href="/how-it-works.html" class="hide-sm">How it works</a>
+    <a href="/faq.html">FAQ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="create">
+    <h1 class="big">Send it for<br>a purpose.</h1>
+    <p class="lede">Say what the money is for and what proof you need. It stays locked until you see that proof and release it. If the deadline passes first, it comes back to you.</p>
+
+    <div class="grid">
+      <aside class="stack">
+        <ol class="steps-mini">
+          <li><span class="n">01</span><div><strong>You lock the money</strong><span>It is held on the Stellar network the moment you confirm. You get a record anyone can check.</span></div></li>
+          <li><span class="n">02</span><div><strong>They upload proof</strong><span>Your recipient opens a private link. No app, no account, no wallet. Just a photo or PDF.</span></div></li>
+          <li><span class="n">03</span><div><strong>You release it</strong><span>We email you when proof arrives. You look, you approve, it settles in seconds.</span></div></li>
+          <li><span class="n">04</span><div><strong>Or it comes back</strong><span>If nothing is released by the deadline, you can take it back. The network itself enforces that date.</span></div></li>
+        </ol>
+        <p class="small">In this testnet version the amount in KES is shown at an illustrative rate, and the final payout to M-Pesa is simulated. Every Stellar transaction is real and on the public test network.</p>
+      </aside>
+
+      <form class="panel" id="form" novalidate>
+        <div class="error-box" id="err" role="alert"></div>
+
+        <div class="field">
+          <label for="sender_email">Your email</label>
+          <input id="sender_email" type="email" autocomplete="email" placeholder="grace@email.com" required>
+          <p class="hint">We send your private payment link here, and tell you when proof arrives.</p>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="recipient_name">Who is it for?</label>
+            <input id="recipient_name" placeholder="Akinyi Wanjiru" required>
+          </div>
+          <div class="field">
+            <label for="recipient_contact">Their phone or email</label>
+            <input id="recipient_contact" placeholder="0712 345 678" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="amount">Amount in KES</label>
+          <input id="amount" type="number" inputmode="numeric" min="100" max="300000" step="1" placeholder="45000" required>
+          <div class="amount-line"><span id="xlm">Locks test XLM at an illustrative rate</span><span>Max KES 300,000</span></div>
+        </div>
+
+        <div class="field">
+          <label for="purpose">What is it for?</label>
+          <input id="purpose" placeholder="Form 2 school fees, Term 1" required>
+          <div class="chips" data-for="purpose">
+            <button type="button" class="chip">School fees</button>
+            <button type="button" class="chip">Hospital bill</button>
+            <button type="button" class="chip">Building materials</button>
+            <button type="button" class="chip">Shop stock</button>
+            <button type="button" class="chip">Rent</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="proof_required">What proof do you need?</label>
+          <input id="proof_required" placeholder="Stamped fee receipt from the school" required>
+          <div class="chips" data-for="proof_required">
+            <button type="button" class="chip">Fee receipt</button>
+            <button type="button" class="chip">Hospital invoice</button>
+            <button type="button" class="chip">Supplier invoice</button>
+            <button type="button" class="chip">Photos of the work</button>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="deadline_pick">Deadline</label>
+            <select id="deadline_pick">
+              <option value="10m">In 10 minutes (to test a return)</option>
+              <option value="3d">In 3 days</option>
+              <option value="7d" selected>In 7 days</option>
+              <option value="14d">In 14 days</option>
+              <option value="30d">In 30 days</option>
+              <option value="custom">Pick a date</option>
+            </select>
+          </div>
+          <div class="field hidden" id="custom_wrap">
+            <label for="deadline_custom">Date and time</label>
+            <input id="deadline_custom" type="datetime-local">
+          </div>
+        </div>
+
+        <button class="btn btn-amber btn-block" id="submit" type="submit">Lock the money</button>
+        <p class="hint" style="text-align:center;margin-top:14px">Locking takes about 10 seconds while the network confirms it.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="done" class="hidden">
+    <span class="pill">Locked</span>
+    <h1 class="big" style="margin-top:20px"><span id="d_amount"></span><br>is locked.</h1>
+    <p class="lede" id="d_lede"></p>
+
+    <div class="grid">
+      <div class="panel stack">
+        <div>
+          <div class="section-title">Send this link to <span id="d_name"></span></div>
+          <p class="small">This is how they see the money and upload proof. Anyone with it can upload, so send it only to them.</p>
+          <div class="linkbox"><input id="d_rlink" readonly><button class="btn btn-ghost" type="button" data-copy="d_rlink">Copy</button></div>
+          <div style="margin-top:12px"><a class="btn btn-amber" id="d_wa" target="_blank" rel="noopener">Share on WhatsApp</a></div>
+        </div>
+        <div>
+          <div class="section-title">Your private link</div>
+          <p class="small" id="d_mailnote">Keep this one to yourself. It is where you review proof and release the money.</p>
+          <div class="linkbox"><input id="d_slink" readonly><button class="btn btn-ghost" type="button" data-copy="d_slink">Copy</button></div>
+          <div style="margin-top:12px"><a class="btn btn-ghost" id="d_open">Open your payment page</a></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="section-title">On the Stellar test network</div>
+        <div class="hash-link"><div><div class="small">Lock transaction</div><div class="hash" id="d_hash"></div></div><a id="d_hashlink" target="_blank" rel="noopener">View on explorer</a></div>
+        <div class="kv"><span class="k">Held</span><span class="v" id="d_xlm"></span></div>
+        <div class="kv"><span class="k">Release</span><span class="v">Only when you approve</span></div>
+        <div class="kv"><span class="k">After the deadline</span><span class="v">You can take it back</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><span>HakikaSend. Send with certainty.</span><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></footer>
+
+<script src="/app/app.js"></script>
+<script>
+(function () {
+  var RATE = 40; // illustrative KES per test XLM, matches DISPLAY_RATE_KES_PER_XLM
+  var $ = function (id) { return document.getElementById(id); };
+
+  $('amount').addEventListener('input', function () {
+    var v = Number(this.value);
+    $('xlm').textContent = v > 0 ? 'Locks ' + (v / RATE).toLocaleString('en-KE', { maximumFractionDigits: 2 }) + ' test XLM (illustrative rate)' : 'Locks test XLM at an illustrative rate';
+  });
+
+  document.querySelectorAll('.chips').forEach(function (group) {
+    group.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('chip')) return;
+      var input = $(group.dataset.for);
+      input.value = e.target.textContent;
+      input.focus();
+    });
+  });
+
+  $('deadline_pick').addEventListener('change', function () {
+    $('custom_wrap').classList.toggle('hidden', this.value !== 'custom');
+  });
+
+  function deadline() {
+    var pick = $('deadline_pick').value, now = Date.now();
+    var map = { '10m': 10 * 60e3, '3d': 3 * 864e5, '7d': 7 * 864e5, '14d': 14 * 864e5, '30d': 30 * 864e5 };
+    if (map[pick]) return new Date(now + map[pick]).toISOString();
+    var v = $('deadline_custom').value;
+    return v ? new Date(v).toISOString() : '';
+  }
+
+  function showError(msg) { var e = $('err'); e.textContent = msg; e.classList.add('show'); e.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+
+  $('form').addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    $('err').classList.remove('show');
+    var btn = $('submit');
+    HS.busy(btn, true, 'Locking on Stellar testnet');
+    try {
+      var r = await HS.api('/api/payments', { method: 'POST', body: {
+        sender_email: $('sender_email').value,
+        recipient_name: $('recipient_name').value,
+        recipient_contact: $('recipient_contact').value,
+        amount_kes: $('amount').value,
+        purpose: $('purpose').value,
+        proof_required: $('proof_required').value,
+        deadline: deadline()
+      }});
+      $('d_amount').textContent = HS.kes(r.amountKes);
+      $('d_lede').textContent = 'It is set aside for ' + r.recipientName + '. Nobody receives it until you approve their proof.';
+      $('d_name').textContent = r.recipientName;
+      $('d_rlink').value = r.recipientLink;
+      $('d_slink').value = r.senderLink;
+      $('d_open').href = r.senderLink;
+      $('d_hash').textContent = r.lockTxHash;
+      $('d_hashlink').href = r.lockTxUrl;
+      $('d_xlm').textContent = Number(r.amount).toLocaleString('en-KE', { maximumFractionDigits: 2 }) + ' test XLM';
+      var msg = 'Hi ' + r.recipientName + ', I have set aside ' + HS.kes(r.amountKes) + ' for you on HakikaSend. Open this link and upload the proof to receive it: ' + r.recipientLink;
+      $('d_wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+      if (r.emails && r.emails.sender && r.emails.sender.ok) $('d_mailnote').textContent = 'We also emailed it to you. Keep it to yourself. It is where you review proof and release the money.';
+      $('create').classList.add('hidden');
+      $('done').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      showError(e.message);
+    } finally {
+      HS.busy(btn, false);
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    var id = e.target.dataset && e.target.dataset.copy;
+    if (id) HS.copy($(id).value, e.target);
+  });
+})();
+</script>
+</body>
+</html>

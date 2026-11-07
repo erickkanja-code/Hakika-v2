@@ -3,188 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How it works — Hakika</title>
+<title>How it works | HakikaSend</title>
+<meta name="description" content="How HakikaSend holds money for a purpose and releases it on proof.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0D0D0D;--white:#F2F0EB;--amber:#F0A500;--gray:#888580;--dark2:#161614;--dark3:#1E1E1B;--border:#2A2A27;--wborder:#D5D2CB}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(13,13,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
-.logo{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--white);text-decoration:none}
-.logo span{color:var(--amber)}
-.nav-r{display:flex;align-items:center;gap:32px}
-.nav-r a{font-size:14px;color:var(--gray);text-decoration:none;transition:color .2s}
-.nav-r a:hover,.nav-r a.active{color:var(--white)}
-.nav-btn{background:var(--amber)!important;color:var(--black)!important;padding:10px 22px;border-radius:100px;font-weight:600!important;font-size:14px}
-.inner{max-width:1200px;margin:0 auto}
-
-/* PAGE HERO */
-.page-hero{padding:160px 52px 100px;background:var(--black)}
-.page-hero-inner{max-width:1200px;margin:0 auto}
-.page-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--gray);font-size:12px;padding:6px 16px;border-radius:100px;margin-bottom:40px;letter-spacing:.03em}
-.page-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
-.page-hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,9vw,120px);line-height:.92;letter-spacing:-3px;color:var(--white);max-width:900px;margin-bottom:48px}
-.page-hero h1 span{color:var(--amber)}
-.page-hero-sub{font-size:19px;font-weight:300;color:var(--gray);max-width:540px;line-height:1.7;border-top:1px solid var(--border);padding-top:40px}
-
-/* FLOW SECTION */
-.flow{background:var(--white);padding:0 52px}
-.flow-inner{max-width:1200px;margin:0 auto}
-
-.flow-step{display:grid;grid-template-columns:80px 1fr 1fr;gap:0;border-bottom:1px solid var(--wborder);padding:72px 0}
-.flow-step:last-child{border-bottom:none}
-.flow-num{font-family:'Archivo Black',sans-serif;font-size:13px;color:#BBB8B2;letter-spacing:.04em;padding-top:6px}
-.flow-left{padding-right:60px;border-right:1px solid var(--wborder)}
-.flow-title{font-family:'Archivo Black',sans-serif;font-size:clamp(28px,3.5vw,46px);letter-spacing:-1px;line-height:1.0;color:var(--black);margin-bottom:20px}
-.flow-desc{font-size:16px;color:#4A4845;line-height:1.72;max-width:400px}
-.flow-right{padding-left:60px;display:flex;flex-direction:column;justify-content:center}
-.flow-detail{font-size:15px;color:#4A4845;line-height:1.75;margin-bottom:20px}
-.flow-detail strong{color:var(--black);font-weight:600}
-/* flow card mockup */
-.flow-card{background:var(--black);border-radius:12px;padding:24px;margin-top:8px}
-.fc-label{font-size:10px;color:var(--gray);font-family:'Inter',sans-serif;letter-spacing:.06em;margin-bottom:6px}
-.fc-val{font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--white);letter-spacing:-.5px;margin-bottom:16px}
-.fc-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
-.fc-row:last-child{border-bottom:none}
-.fc-rk{font-size:11px;color:var(--gray);font-family:'Inter',sans-serif}
-.fc-rv{font-size:13px;color:var(--white);font-weight:500;font-family:'Inter',sans-serif}
-.fc-badge{background:rgba(240,165,0,.15);color:var(--amber);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;font-family:'Inter',sans-serif;letter-spacing:.03em}
-.fc-badge-green{background:rgba(34,169,91,.15);color:#4BC87A;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;font-family:'Inter',sans-serif;letter-spacing:.03em}
-.flow-note{margin-top:20px;background:#FFF8EC;border-left:3px solid var(--amber);padding:14px 18px;border-radius:0 6px 6px 0}
-.flow-note p{font-size:13px;color:#5A4A1E;line-height:1.6}
-.flow-note strong{color:#3A2E0E;font-weight:600}
-/* proof box */
-.proof-box{background:var(--dark3);border-radius:10px;padding:16px;margin-top:8px;display:flex;gap:12px;align-items:flex-start}
-.proof-ico{width:36px;height:36px;background:rgba(240,165,0,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.proof-txt strong{display:block;font-size:13px;color:var(--white);margin-bottom:3px;font-weight:600;font-family:'Inter',sans-serif}
-.proof-txt p{font-size:12px;color:var(--gray);line-height:1.5;font-family:'Inter',sans-serif}
-/* release card */
-.release-card{background:var(--black);border-radius:12px;padding:24px;margin-top:8px;border:1px solid rgba(240,165,0,.2)}
-.rc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.rc-title{font-family:'Archivo Black',sans-serif;font-size:14px;color:var(--white);letter-spacing:.02em}
-.rc-amount{font-family:'Archivo Black',sans-serif;font-size:36px;color:var(--white);letter-spacing:-1.5px;margin-bottom:4px}
-.rc-sub{font-size:12px;color:var(--gray);margin-bottom:20px;font-family:'Inter',sans-serif}
-.rc-btn{width:100%;background:var(--amber);color:var(--black);border:none;border-radius:8px;padding:13px;font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:.04em;cursor:pointer}
-
-/* TYPES SECTION */
-.types{background:var(--dark2);padding:120px 52px}
-.types-inner{max-width:1200px;margin:0 auto}
-.types h2{font-family:'Archivo Black',sans-serif;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2px;line-height:.95;color:var(--white);margin-bottom:72px}
-.types-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
-.type-card{background:var(--dark2);padding:52px 44px}
-.type-card:nth-child(1){background:var(--amber)}
-.type-icon{width:48px;height:48px;margin-bottom:28px}
-.type-icon svg{width:32px;height:32px}
-.type-card:nth-child(1) .type-icon svg{stroke:var(--black)}
-.type-card:not(:nth-child(1)) .type-icon svg{stroke:var(--amber)}
-.type-title{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:-.5px;line-height:1.05;margin-bottom:14px}
-.type-card:nth-child(1) .type-title{color:var(--black)}
-.type-card:not(:nth-child(1)) .type-title{color:var(--white)}
-.type-desc{font-size:15px;line-height:1.72}
-.type-card:nth-child(1) .type-desc{color:rgba(13,13,13,.65)}
-.type-card:not(:nth-child(1)) .type-desc{color:var(--gray)}
-.type-tag{display:inline-block;margin-top:20px;font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;font-family:'Inter',sans-serif;letter-spacing:.03em}
-.type-card:nth-child(1) .type-tag{background:rgba(0,0,0,.12);color:var(--black)}
-.type-card:not(:nth-child(1)) .type-tag{background:rgba(240,165,0,.12);color:var(--amber)}
-
-/* BLOCKCHAIN SECTION */
-.blockchain{background:var(--white);padding:120px 52px}
-.blockchain-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
-.blockchain h2{font-family:'Archivo Black',sans-serif;font-size:clamp(36px,4.5vw,62px);letter-spacing:-1.5px;line-height:.97;color:var(--black);margin-bottom:28px}
-.blockchain-left p{font-size:17px;color:#4A4845;line-height:1.72;margin-bottom:18px}
-.blockchain-left p strong{color:var(--black)}
-.blockchain-right{padding-top:8px}
-.bc-item{padding:28px 0;border-bottom:1px solid var(--wborder);display:grid;grid-template-columns:40px 1fr;gap:20px;align-items:start}
-.bc-item:first-child{padding-top:0}
-.bc-item:last-child{border-bottom:none}
-.bc-num{font-family:'Archivo Black',sans-serif;font-size:13px;color:var(--amber);letter-spacing:.04em}
-.bc-content-title{font-family:'Archivo Black',sans-serif;font-size:17px;color:var(--black);margin-bottom:6px;letter-spacing:-.2px}
-.bc-content-desc{font-size:14px;color:#666;line-height:1.65}
-
-/* CTA STRIP */
-.cta-strip{background:var(--amber);padding:80px 52px}
-.cta-strip-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
-.cta-strip h2{font-family:'Archivo Black',sans-serif;font-size:clamp(32px,4vw,56px);letter-spacing:-1.5px;line-height:.97;color:var(--black)}
-.btn-dark{background:var(--black);color:var(--amber);padding:15px 32px;border:none;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;transition:opacity .2s}
-.btn-dark:hover{opacity:.85}
-
-footer{background:var(--black);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
-.f-logo{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--white)}
-.f-logo span{color:var(--amber)}
-.f-note{font-size:13px;color:var(--gray)}
-.f-links{display:flex;gap:24px;list-style:none}
-.f-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
-.f-links a:hover{color:var(--white)}
-
-@media(max-width:960px){
-  nav{padding:16px 24px}
-  .nav-r a:not(.nav-btn){display:none}
-  .page-hero,.flow,.types,.blockchain,.cta-strip{padding-left:24px;padding-right:24px}
-  .page-hero{padding-top:130px;padding-bottom:60px}
-  .flow-step{grid-template-columns:48px 1fr;gap:0}
-  .flow-left{grid-column:2;border-right:none;padding-right:0;border-bottom:1px solid var(--wborder);padding-bottom:36px;margin-bottom:36px}
-  .flow-right{grid-column:2;padding-left:0}
-  .types-grid{grid-template-columns:1fr}
-  .blockchain-inner{grid-template-columns:1fr;gap:48px}
-  .cta-strip-inner{flex-direction:column;align-items:flex-start}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
-}
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-*, *::before, *::after {
-  max-width: 100%;
-}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="logo">Hakika<span>.</span></a>
+  <a href="/" class="logo"><svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="42" height="140" fill="#F2F0EB"/><rect x="128" y="30" width="42" height="140" fill="#F2F0EB"/><circle cx="100" cy="100" r="41" fill="#0D0D0D"/><circle cx="100" cy="100" r="33" fill="#F0A500"/></svg>HakikaSend</a>
   <div class="nav-r">
-    <a href="how-it-works.html" class="active">How it works</a>
-    <a href="faq.html">FAQ</a>
-    <a href="early-access.html" class="nav-btn">Get early access</a>
+    <a href="/how-it-works.html" class="active">How it works</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/app/" class="nav-btn">Open the app</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-tag"><span class="page-tag-dot"></span>Four countries. One trust layer.</div>
-    <h1>How <span>Hakika</span><br>actually works.</h1>
-    <p class="page-hero-sub">From the moment you decide to send, to the moment proof is uploaded and funds settle — in M-Pesa, MTN MoMo, Vodafone Cash, or bank transfer. Every step, no jargon.</p>
+    <div class="page-tag"><span class="page-tag-dot"></span>Built for Kenya</div>
+    <h1>How <span>HakikaSend</span><br>actually works.</h1>
+    <p class="page-hero-sub">From the moment you decide to send, to the moment the proof is in and the money moves. Every step, in plain words.</p>
   </div>
 </section>
 
-
-<!-- STEP BY STEP FLOW -->
 <section class="flow">
   <div class="flow-inner">
-
     <div class="flow-step">
       <div class="flow-num">01</div>
       <div class="flow-left">
         <div class="flow-title">You decide<br>to send.</div>
-        <p class="flow-desc">Open Hakika, enter the amount, pick your recipient, and choose whether this is a standard transfer or a conditional payment.</p>
+        <p class="flow-desc">Open the app, enter the amount, name your recipient and say what the money is for.</p>
       </div>
       <div class="flow-right">
-        <p class="flow-detail">Standard transfers go straight through — fast, low fee, M-Pesa on the other end. <strong>No conditions, no escrow, no waiting.</strong> This works for when you just want to send money and you trust how it will be used.</p>
-        <p class="flow-detail">Conditional payments are different. You add a purpose — school fees, a hospital bill, shop stock — and you define what proof you need before the money releases. The recipient knows upfront what they need to provide.</p>
+        <p class="flow-detail">You choose the proof you need to see, like a fee receipt or a hospital invoice, and a deadline. <strong>Your recipient knows exactly what to send before the money moves.</strong></p>
         <div class="flow-card">
-          <div class="fc-label">SEND TYPE</div>
+          <div class="fc-label">Example</div>
           <div class="fc-val">Conditional payment</div>
-          <div class="fc-row"><span class="fc-rk">To</span><span class="fc-rv">Akinyi W. — Nairobi</span></div>
+          <div class="fc-row"><span class="fc-rk">To</span><span class="fc-rv">Akinyi W., Nyeri</span></div>
           <div class="fc-row"><span class="fc-rk">Amount</span><span class="fc-rv">KES 45,000</span></div>
-          <div class="fc-row"><span class="fc-rk">Purpose</span><span class="fc-rv">School fees · Term 3</span></div>
-          <div class="fc-row"><span class="fc-rk">Proof required</span><span class="fc-rv">Fee receipt</span></div>
-          <div class="fc-row"><span class="fc-rk">Deadline</span><span class="fc-rv">4 Sep 2026</span></div>
+          <div class="fc-row"><span class="fc-rk">Purpose</span><span class="fc-rv">School fees, Term 1</span></div>
+          <div class="fc-row"><span class="fc-rk">Proof required</span><span class="fc-rv">Stamped fee receipt</span></div>
+          <div class="fc-row"><span class="fc-rk">Deadline</span><span class="fc-rv">14 days</span></div>
         </div>
       </div>
     </div>
@@ -192,41 +54,35 @@ html, body {
     <div class="flow-step">
       <div class="flow-num">02</div>
       <div class="flow-left">
-        <div class="flow-title">Money locks<br>in escrow.</div>
-        <p class="flow-desc">Your payment moves onto the Stellar blockchain immediately. It is locked — visible to the recipient, but inaccessible to anyone until you release it.</p>
+        <div class="flow-title">The money<br>is locked.</div>
+        <p class="flow-desc">It is held on the Stellar network the moment you confirm. Your recipient can see it is waiting for them.</p>
       </div>
       <div class="flow-right">
-        <p class="flow-detail"><strong>This is what makes Hakika different.</strong> Your money does not sit with us. It does not sit with a bank. It sits on a public blockchain that no single party — not Hakika, not the recipient, not a government — can touch without your approval.</p>
-        <p class="flow-detail">The recipient receives a notification the moment funds are locked. They can see the amount, the purpose, and the deadline. They know exactly what they need to do to unlock the money.</p>
+        <p class="flow-detail">The lock is a public transaction with two rules written into it. <strong>Before the deadline, only your recipient can receive it, and only when you approve. From the deadline on, only you can claim it back.</strong></p>
+        <p class="flow-detail">You get a link to the transaction that anyone can open and check.</p>
         <div class="flow-card">
-          <div class="fc-label">ESCROW STATUS</div>
-          <div class="fc-val">Funds locked</div>
-          <div class="fc-row"><span class="fc-rk">Blockchain</span><span class="fc-rv">Stellar</span></div>
+          <div class="fc-label">Status</div>
+          <div class="fc-val">Money locked</div>
+          <div class="fc-row"><span class="fc-rk">Network</span><span class="fc-rv">Stellar</span></div>
           <div class="fc-row"><span class="fc-rk">Amount</span><span class="fc-rv">KES 45,000</span></div>
-          <div class="fc-row"><span class="fc-rk">Status</span><span class="fc-badge">Awaiting proof</span></div>
-          <div class="fc-row"><span class="fc-rk">Can be accessed by</span><span class="fc-rv">Nobody, yet</span></div>
+          <div class="fc-row"><span class="fc-rk">Status</span><span class="fc-badge">Waiting for proof</span></div>
         </div>
-        <div class="flow-note"><p><strong>What if I change my mind?</strong> If no proof is uploaded before the deadline, the money automatically returns to you. You can also cancel an escrow early as long as no proof has been submitted yet.</p></div>
+        <div class="flow-note"><p><strong>Can I cancel early?</strong> No. Once it is locked, the money stays put until you release it or the deadline passes. Pick a deadline that gives them enough time.</p></div>
       </div>
     </div>
 
     <div class="flow-step">
       <div class="flow-num">03</div>
       <div class="flow-left">
-        <div class="flow-title">Recipient<br>uploads proof.</div>
-        <p class="flow-desc">The recipient opens their Hakika app and uploads evidence that the purpose has been fulfilled. You get a push notification the moment it lands.</p>
+        <div class="flow-title">Your recipient<br>uploads proof.</div>
+        <p class="flow-desc">They open a private link on their phone and upload a photo or a PDF. No app, no account and no crypto wallet.</p>
       </div>
       <div class="flow-right">
-        <p class="flow-detail">Proof can be a photo, a scanned document, or a file. A school fee receipt, a hospital invoice, a photo of the goods purchased, a contractor photo of completed work. Whatever you and the recipient agreed on.</p>
-        <p class="flow-detail"><strong>You review it on your end.</strong> Hakika does not validate the proof — you do. You know what an authentic receipt from your child's school looks like. You know what a real hospital invoice should say. That knowledge belongs with you, not an algorithm.</p>
+        <p class="flow-detail">We email you the moment it lands. <strong>You review it, not us.</strong> You know what a real receipt from your child’s school looks like.</p>
+        <p class="flow-detail">Not right? Send it back with a reason and they can upload again before the deadline.</p>
         <div class="proof-box">
-          <div class="proof-ico">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--amber)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </div>
-          <div class="proof-txt">
-            <strong>Receipt uploaded by Akinyi · 31 Aug 2026, 9:14am</strong>
-            <p>St. Francis Girls School — Term 3 2026 fee statement. KES 45,000. Stamped and signed by school bursar. 1 document attached.</p>
-          </div>
+          <div class="proof-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#F0A500" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+          <div class="proof-txt"><strong>Receipt uploaded by Akinyi</strong><p>Term 1 fee statement, KES 45,000, stamped by the school bursar. 1 photo attached.</p></div>
         </div>
       </div>
     </div>
@@ -235,138 +91,80 @@ html, body {
       <div class="flow-num">04</div>
       <div class="flow-left">
         <div class="flow-title">You approve.<br>Money moves.</div>
-        <p class="flow-desc">One tap to review, one tap to release. Funds settle to the recipient's M-Pesa within seconds. You both get a confirmation.</p>
+        <p class="flow-desc">One tap to release. It settles on Stellar in seconds and pays out to M-Pesa.</p>
       </div>
       <div class="flow-right">
-        <p class="flow-detail">The moment you release, the Stellar escrow settles instantly. The money converts and hits the recipient via their preferred local method — M-Pesa in Kenya, MTN MoMo in Nigeria, Ghana or Rwanda, Vodafone Cash in Ghana, or bank transfer. <strong>No waiting, no processing days, no bank delays.</strong></p>
-        <p class="flow-detail">Both of you receive a confirmation. The transaction is recorded permanently on the Stellar blockchain — a tamper-proof record that neither party can alter, ever.</p>
-        <div class="release-card">
-          <div class="rc-head">
-            <span style="font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--gray);letter-spacing:.04em">READY TO RELEASE</span>
-            <span class="fc-badge" style="background:rgba(240,165,0,.15);color:var(--amber);font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px">Proof verified</span>
-          </div>
-          <div class="rc-amount">KES 45,000</div>
-          <div class="rc-sub">Settles to local mobile wallet · Done in seconds</div>
-          <div class="fc-row" style="border-color:var(--border)"><span class="fc-rk" style="color:var(--gray)">Blockchain record</span><span class="fc-rv" style="color:var(--white)">Stellar · permanent</span></div>
-          <div class="fc-row" style="border-color:var(--border);border-bottom:none"><span class="fc-rk" style="color:var(--gray)">Both parties notified</span><span class="fc-rv" style="color:var(--white)">Immediately</span></div>
-          <button class="rc-btn" style="margin-top:20px">RELEASE TO M-PESA</button>
+        <p class="flow-detail">Every step is recorded: when it was locked, when the proof came in and when it was released. <strong>You both see the same record.</strong></p>
+        <p class="flow-detail">In early access, payments run on test funds so you can try the whole flow first. The M-Pesa payout switches on at full launch.</p>
+        <div class="flow-card">
+          <div class="fc-label">Released</div>
+          <div class="fc-val">KES 45,000</div>
+          <div class="fc-row"><span class="fc-rk">Settles on Stellar</span><span class="fc-rv">In seconds</span></div>
+          <div class="fc-row"><span class="fc-rk">Record</span><span class="fc-rv">Public, permanent</span></div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- TRANSFER TYPES -->
 <section class="types">
   <div class="types-inner">
-    <h2>Two ways<br>to send.</h2>
+    <h2>Three ways<br>to send.</h2>
     <div class="types-grid">
-      <div class="type-card">
-        <div class="type-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
-        </div>
-        <div class="type-title">Standard transfer</div>
-        <p class="type-desc">Send money directly to M-Pesa with no conditions attached. Fast, low-fee, and just as reliable as any remittance app — but built on Stellar for near-instant settlement. Use this when you trust how the money will be spent.</p>
-        <span class="type-tag">For everyday sending</span>
+      <div class="type-card lead">
+        <div class="type-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="type-title">Release on proof</div>
+        <p class="type-desc">For money that has to reach a person: a contractor, a shop, a land deposit. It is locked until the agreed proof arrives and you approve it. Not released by the deadline? You take it back.</p>
+        <span class="type-tag">Open in early access</span>
       </div>
       <div class="type-card">
-        <div class="type-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0110 0v4"/>
-          </svg>
-        </div>
-        <div class="type-title">Conditional escrow</div>
-        <p class="type-desc">Send money with a condition attached. Funds lock on the Stellar blockchain until the recipient uploads your agreed proof. You review it and release — or the deadline passes and the money returns automatically.</p>
-        <span class="type-tag">When it matters most</span>
+        <div class="type-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg></div>
+        <div class="type-title">Pay the bill directly</div>
+        <p class="type-desc">Pay the school, hospital or landlord straight to their Paybill or Till number. The money never passes through anyone’s phone, and the M-Pesa confirmation is your receipt.</p>
+        <span class="type-tag">Coming next</span>
       </div>
       <div class="type-card">
-        <div class="type-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-          </svg>
-        </div>
-        <div class="type-title">Split payment</div>
-        <p class="type-desc">Send part as free cash and part as a conditional escrow in one transaction. Fund the household costs immediately while holding school fees until the receipt arrives. One send, two outcomes.</p>
-        <span class="type-tag">For mixed needs</span>
-      </div>
-      <div class="type-card">
-        <div class="type-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-          </svg>
-        </div>
-        <div class="type-title">Milestone payment</div>
-        <p class="type-desc">Break a large amount into tranches, each releasing on a different proof. Perfect for construction projects, business restocking over time, or any situation where progress happens in stages you want to verify.</p>
-        <span class="type-tag">For long projects</span>
+        <div class="type-icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <div class="type-title">Send to family</div>
+        <p class="type-desc">A plain transfer to an M-Pesa number with no conditions, for the everyday support you already send.</p>
+        <span class="type-tag">Coming next</span>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- BLOCKCHAIN EXPLAINER -->
 <section class="blockchain">
   <div class="blockchain-inner">
     <div class="blockchain-left">
-      <h2>Why blockchain? Why Stellar?</h2>
-      <p>Most fintech apps store your money in a bank account they control. If the company goes down, your money is at risk. If a bad actor gains access, funds can be moved without your knowledge.</p>
-      <p>Hakika stores your escrow funds on the Stellar blockchain — a public ledger that no single party controls. <strong>Not us, not a bank, not any government.</strong> The conditions you set are written into the transaction itself. They cannot be changed after the fact.</p>
-      <p>Stellar was chosen because it settles in seconds, costs fractions of a cent per transaction, and has a proven track record handling billions in cross-border payments. It integrates cleanly with the mobile money rails that power Nigeria, Ghana, Kenya and Rwanda.</p>
+      <h2>Why Stellar?</h2>
+      <p>Stellar is a public payment network built for moving money across borders. It settles in about five seconds and costs a fraction of a shilling per transaction.</p>
+      <p>It also has something most payment systems do not: <strong>a way to lock money with time rules written into the transaction itself.</strong> That is exactly what a payment for a purpose needs.</p>
+      <p>Your recipient never sees any of this. They see a link, an upload button and the money.</p>
     </div>
     <div class="blockchain-right">
-      <div class="bc-item">
-        <div class="bc-num">01</div>
-        <div>
-          <div class="bc-content-title">Your escrow is public but private</div>
-          <p class="bc-content-desc">The transaction lives on a public ledger — anyone can verify it exists. But only your wallet address is visible. Your name, your details, the recipient's identity — none of that is on-chain.</p>
-        </div>
-      </div>
-      <div class="bc-item">
-        <div class="bc-num">02</div>
-        <div>
-          <div class="bc-content-title">Conditions are baked in, not bolted on</div>
-          <p class="bc-content-desc">The escrow logic is part of the transaction itself. It is not a policy that Hakika can override. If the conditions are not met, the blockchain returns the funds. We have no power to stop it.</p>
-        </div>
-      </div>
-      <div class="bc-item">
-        <div class="bc-num">03</div>
-        <div>
-          <div class="bc-content-title">Settlement in seconds, not days</div>
-          <p class="bc-content-desc">Stellar finalises transactions in 3 to 5 seconds. Compare that to SWIFT wire transfers that take 2 to 5 business days. The moment you release, M-Pesa gets the money.</p>
-        </div>
-      </div>
-      <div class="bc-item">
-        <div class="bc-num">04</div>
-        <div>
-          <div class="bc-content-title">A permanent record you can always access</div>
-          <p class="bc-content-desc">Every Hakika transaction — the escrow creation, the proof upload timestamp, the release — is recorded on the Stellar ledger permanently. You will always be able to verify what happened and when.</p>
-        </div>
-      </div>
+      <div class="bc-item"><div class="bc-num">01</div><div><div class="bc-content-title">The deadline is enforced by the network</div><p class="bc-content-desc">From the deadline on, only your account can claim the locked money. Nobody can change that rule after the lock.</p></div></div>
+      <div class="bc-item"><div class="bc-num">02</div><div><div class="bc-content-title">Release happens when you approve</div><p class="bc-content-desc">HakikaSend sends the release only after you tap approve. In this first version our app carries out that step for you, so you never have to handle keys.</p></div></div>
+      <div class="bc-item"><div class="bc-num">03</div><div><div class="bc-content-title">Public, but private</div><p class="bc-content-desc">The lock and release are visible on the public ledger. Your name, your recipient and their documents are not. Those stay in our private storage.</p></div></div>
+      <div class="bc-item"><div class="bc-num">04</div><div><div class="bc-content-title">A record you can always check</div><p class="bc-content-desc">Every lock, release and return has a transaction link you can open in any browser, now or years from now.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
 <section class="cta-strip">
   <div class="cta-strip-inner">
     <h2>Ready to send<br>with certainty?</h2>
-    <a href="early-access.html" class="btn-dark">JOIN THE WAITLIST</a>
+    <a href="/app/" class="btn-dark">OPEN THE APP</a>
   </div>
 </section>
-
 <footer>
-  <div class="f-logo">Hakika<span>.</span></div>
-  <p class="f-note">Nigeria · Ghana · Kenya · Rwanda · Launching Nov 2026.</p>
+  <div class="f-logo">HakikaSend</div>
+  <p class="f-note">Built for Kenya. Early access, November 2026.</p>
   <ul class="f-links">
-    <li><a href="how-it-works.html">How it works</a></li>
-    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="/how-it-works.html">How it works</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/early-access.html">Launch updates</a></li>
     <li><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></li>
   </ul>
 </footer>
-
 </body>
 </html>

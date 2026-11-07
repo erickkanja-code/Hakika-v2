@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Payment | HakikaSend</title>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body>
+<div class="testnet"><b>TESTNET</b>Test funds on the Stellar test network. No real money moves.</div>
+<nav>
+  <a href="/" class="logo"><svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="42" height="140" fill="#F2F0EB"/><rect x="128" y="30" width="42" height="140" fill="#F2F0EB"/><circle cx="100" cy="100" r="41" fill="#0D0D0D"/><circle cx="100" cy="100" r="33" fill="#F0A500"/></svg>HakikaSend</a>
+  <div class="nav-r">
+    <a href="/app/" class="hide-sm">Send a payment</a>
+    <a href="/faq.html">FAQ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div id="loading" class="small">Loading payment...</div>
+  <div class="error-box" id="fatal" role="alert"></div>
+
+  <div id="page" class="hidden">
+    <span class="pill" id="status"></span>
+    <div class="amount-big" id="amount" style="margin-top:20px"></div>
+    <p class="lede" id="summary" style="margin-top:14px"></p>
+
+    <div class="grid wide">
+      <div>
+        <div class="error-box" id="err" role="alert"></div>
+        <div id="action" class="stack"></div>
+      </div>
+      <aside class="stack">
+        <div class="panel">
+          <div class="section-title">Details</div>
+          <div id="details"></div>
+        </div>
+        <div class="panel">
+          <div class="section-title">On the Stellar test network</div>
+          <div id="chain"></div>
+        </div>
+        <div class="panel">
+          <div class="section-title">What has happened</div>
+          <ul class="timeline" id="timeline"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer><span>HakikaSend. Send with certainty.</span><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></footer>
+
+<script src="/app/app.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var token = new URLSearchParams(location.search).get('t') || '';
+  var state = null, lastKey = '', file = null;
+
+  var STATUS = {
+    locked: ['Locked, waiting for proof', ''],
+    proof_submitted: ['Proof waiting for review', ''],
+    releasing: ['Releasing', ''],
+    released: ['Released', 'done'],
+    expired: ['Deadline passed', 'off'],
+    refunding: ['Returning to sender', 'off'],
+    refunded: ['Returned to sender', 'off'],
+    pending: ['Locking', ''],
+    failed: ['Lock failed', 'off']
+  };
+  var EVENTS = {
+    created: 'Payment created',
+    locked: 'Money locked on Stellar testnet',
+    lock_failed: 'Locking failed',
+    proof_submitted: 'Proof uploaded',
+    proof_rejected: 'Proof sent back',
+    released: 'Money released',
+    release_failed: 'Release attempt failed',
+    refunded: 'Money returned to the sender',
+    refund_failed: 'Return attempt failed'
+  };
+
+  function err(msg) { var e = $('err'); e.textContent = msg; e.classList.toggle('show', !!msg); }
+
+  async function load() {
+    try {
+      var data = await HS.api('/api/payment?t=' + encodeURIComponent(token));
+      state = data;
+      var key = data.payment.status + '|' + data.proofs.length + '|' + data.events.length;
+      $('loading').classList.add('hidden');
+      $('page').classList.remove('hidden');
+      renderStatic();
+      if (key !== lastKey) { lastKey = key; renderAction(); }
+    } catch (e) {
+      $('loading').classList.add('hidden');
+      $('fatal').textContent = e.message;
+      $('fatal').classList.add('show');
+    }
+  }
+
+  function kv(k, v) { return '<div class="kv"><span class="k">' + HS.esc(k) + '</span><span class="v">' + v + '</span></div>'; }
+  function hashRow(label, hash, url) {
+    if (!hash) return '';
+    return '<div class="hash-link"><div><div class="small">' + label + '</div><div class="hash">' + HS.esc(hash) + '</div></div><a href="' + url + '" target="_blank" rel="noopener">View on explorer</a></div>';
+  }
+
+  function renderStatic() {
+    var p = state.payment, s = STATUS[p.status] || [p.status, ''];
+    document.title = HS.kes(p.amount_kes_display) + ' for ' + p.purpose + ' | HakikaSend';
+    $('status').textContent = s[0];
+    $('status').className = 'pill ' + s[1];
+    $('amount').textContent = HS.kes(p.amount_kes_display);
+    $('summary').textContent = p.role === 'sender'
+      ? 'You set this aside for ' + p.recipient_name + ': ' + p.purpose + '.'
+      : 'This money has been set aside for you, ' + p.recipient_name + ': ' + p.purpose + '.';
+
+    $('details').innerHTML =
+      kv('For', HS.esc(p.purpose)) +
+      kv('Proof needed', HS.esc(p.proof_required)) +
+      kv('Recipient', HS.esc(p.recipient_name) + (p.recipient_contact ? '<br><span class="small">' + HS.esc(p.recipient_contact) + '</span>' : '')) +
+      kv('Deadline', HS.esc(HS.date(p.deadline)) + '<br><span class="small">' + HS.countdown(p.deadline) + '</span>') +
+      kv('Held on testnet', Number(p.amount).toLocaleString('en-KE', { maximumFractionDigits: 2 }) + ' test XLM') +
+      kv('KES amount', 'Illustrative rate');
+
+    var c = p.chain;
+    $('chain').innerHTML =
+      hashRow('Lock', c.lock_tx_hash, c.lock_tx_url) +
+      hashRow('Release', c.release_tx_hash, c.release_tx_url) +
+      hashRow('Return to sender', c.refund_tx_hash, c.refund_tx_url) +
+      (c.sender_account ? '<div class="kv"><span class="k">Sender test wallet</span><span class="v"><a href="' + c.sender_account_url + '" target="_blank" rel="noopener">' + HS.short(c.sender_account) + '</a></span></div>' : '') +
+      (c.recipient_account ? '<div class="kv"><span class="k">Recipient test wallet</span><span class="v"><a href="' + c.recipient_account_url + '" target="_blank" rel="noopener">' + HS.short(c.recipient_account) + '</a></span></div>' : '');
+
+    $('timeline').innerHTML = state.events.map(function (e) {
+      var detail = '';
+      if (/^[0-9a-f]{64}$/.test(e.detail || '')) detail = '<a href="https://stellar.expert/explorer/testnet/tx/' + e.detail + '" target="_blank" rel="noopener">' + HS.short(e.detail) + '</a>';
+      else if (e.detail && e.type !== 'created') detail = HS.esc(e.detail);
+      return '<li>' + (EVENTS[e.type] || HS.esc(e.type)) + (detail ? '<br><span class="small">' + detail + '</span>' : '') + '<time>' + HS.date(e.created_at) + '</time></li>';
+    }).reverse().join('');
+  }
+
+  function proofCard(pr) {
+    if (!pr) return '';
+    var media = pr.mime === 'application/pdf'
+      ? '<div class="meta"><a class="btn btn-ghost" href="' + pr.view_url + '" target="_blank" rel="noopener">Open the PDF</a></div>'
+      : '<a href="' + pr.view_url + '" target="_blank" rel="noopener"><img src="' + pr.view_url + '" alt="Proof uploaded by the recipient"></a>';
+    return '<div class="proof-view">' + media + '<div class="meta">Uploaded ' + HS.date(pr.submitted_at) + (pr.note ? '<br>Note: ' + HS.esc(pr.note) : '') + '</div></div>';
+  }
+
+  function payoutSim() {
+    var p = state.payment;
+    return '<div class="sim"><span class="tag">SIMULATED</span><h3>Payout to M-Pesa</h3>' +
+      '<p>The release above is a real Stellar testnet transaction. In production this step pays out to M-Pesa. Not connected in this testnet demo, so no money has been sent to any phone.</p>' +
+      '<div style="margin-top:14px">' + kv('Would pay', HS.kes(p.amount_kes_display)) + kv('To', HS.esc(p.recipient_name)) + '</div></div>';
+  }
+
+  function renderAction() {
+    var p = state.payment, a = $('action'), latest = state.proofs[0], html = '';
+    err('');
+
+    if (p.role === 'recipient') {
+      if (p.status === 'locked') {
+        if (latest && latest.decision === 'rejected') html += '<div class="panel" style="border-color:rgba(217,79,61,.5)"><div class="section-title">The sender asked for different proof</div><p class="small">' + HS.esc(latest.decision_reason) + '</p></div>';
+        html += '<div class="panel"><div class="section-title">Upload your proof</div>' +
+          '<p class="small" style="margin-bottom:18px">The sender needs: <strong style="color:var(--white)">' + HS.esc(p.proof_required) + '</strong>. Take a clear photo or upload a PDF.</p>' +
+          '<label class="drop" id="drop"><input type="file" id="file" accept="image/jpeg,image/png,image/webp,application/pdf"><strong id="fileLabel">Choose a photo or PDF</strong><span class="small">JPG, PNG, WEBP or PDF, up to 3 MB</span></label>' +
+          '<div class="field" style="margin-top:18px"><label for="note">Add a note (optional)</label><textarea id="note" placeholder="Paid at the bursar\u2019s office on Monday"></textarea></div>' +
+          '<button class="btn btn-amber btn-block" id="upload" type="button">Send proof</button></div>';
+      } else if (p.status === 'proof_submitted') {
+        html += '<div class="panel"><div class="section-title">Proof sent</div><p class="small" style="margin-bottom:18px">The sender has been told. You will see the result here once they review it.</p>' + proofCard(latest) + '</div>';
+      } else if (p.status === 'released' || p.status === 'releasing') {
+        html += '<div class="panel"><div class="section-title">The sender approved your proof</div><p class="small">The money was released on the Stellar test network.</p></div>' + payoutSim();
+      } else if (p.status === 'expired' || p.status === 'refunding' || p.status === 'refunded') {
+        html += '<div class="panel"><div class="section-title">This payment has closed</div><p class="small">The deadline passed before the money was released, so it goes back to the sender.</p></div>';
+      } else {
+        html += '<div class="panel"><p class="small">This payment is not ready yet.</p></div>';
+      }
+    } else {
+      if (p.status === 'locked') {
+        html += '<div class="panel"><div class="section-title">Waiting for proof from ' + HS.esc(p.recipient_name) + '</div>' +
+          '<p class="small">We will email you the moment they upload it. If they do not have their link, send it again.</p>' +
+          '<div class="linkbox" style="margin-top:14px"><input id="rlink" readonly value="' + HS.esc(p.recipient_link) + '"><button class="btn btn-ghost" type="button" id="copyR">Copy</button></div>' +
+          '<div style="margin-top:12px"><a class="btn btn-amber" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent('Hi ' + p.recipient_name + ', open this link and upload the proof to receive the money on HakikaSend: ' + p.recipient_link) + '">Share on WhatsApp</a></div></div>';
+      } else if (p.status === 'proof_submitted') {
+        html += '<div class="panel"><div class="section-title">' + HS.esc(p.recipient_name) + ' uploaded proof</div>' +
+          '<p class="small" style="margin-bottom:18px">You asked for: ' + HS.esc(p.proof_required) + '. Check it before you release. Once released, it cannot be undone.</p>' +
+          proofCard(latest) +
+          '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px"><button class="btn btn-amber" id="approve" type="button">Approve and release ' + HS.kes(p.amount_kes_display) + '</button><button class="btn btn-ghost" id="rejectToggle" type="button">Ask for different proof</button></div>' +
+          '<div id="rejectBox" class="hidden" style="margin-top:18px"><div class="field"><label for="reason">What is wrong with it?</label><textarea id="reason" placeholder="The receipt has no school stamp"></textarea></div><button class="btn btn-ghost" id="reject" type="button">Send it back</button></div></div>';
+      } else if (p.status === 'released' || p.status === 'releasing') {
+        html += '<div class="panel"><div class="section-title">Released to ' + HS.esc(p.recipient_name) + '</div><p class="small">You approved the proof and the release settled on the Stellar test network. The transaction is listed on the right.</p></div>' + payoutSim();
+      } else if (p.status === 'expired') {
+        html += '<div class="panel"><div class="section-title">The deadline has passed</div><p class="small" style="margin-bottom:18px">Nothing was released in time. The network now lets only you claim this money back.</p><button class="btn btn-amber" id="refund" type="button">Take the money back</button></div>';
+      } else if (p.status === 'refunded' || p.status === 'refunding') {
+        html += '<div class="panel"><div class="section-title">The money is back with you</div><p class="small">It was returned to your test wallet after the deadline. The transaction is listed on the right.</p></div>';
+      } else if (p.status === 'failed') {
+        html += '<div class="panel"><div class="section-title">This payment did not lock</div><p class="small">The Stellar test network did not confirm it, so nothing was held. <a href="/app/">Create it again</a>.</p></div>';
+      } else {
+        html += '<div class="panel"><p class="small">Locking in progress. Refresh in a moment.</p></div>';
+      }
+    }
+    a.innerHTML = html;
+    bind();
+  }
+
+  function bind() {
+    var f = $('file');
+    if (f) {
+      f.addEventListener('change', function () {
+        file = f.files[0] || null;
+        $('fileLabel').textContent = file ? file.name : 'Choose a photo or PDF';
+        $('drop').classList.toggle('on', !!file);
+      });
+      $('upload').addEventListener('click', async function () {
+        if (!file) return err('Choose a photo or PDF first.');
+        var btn = this; HS.busy(btn, true, 'Sending proof'); err('');
+        try {
+          var payload;
+          if (file.type === 'application/pdf') {
+            if (file.size > 3 * 1024 * 1024) throw new Error('That PDF is larger than 3 MB. Try a smaller scan or a photo.');
+            payload = { mime: 'application/pdf', data: await HS.readBase64(file) };
+          } else if (/^image\//.test(file.type)) {
+            payload = await HS.compressImage(file);
+          } else throw new Error('Upload a photo (JPG, PNG, WEBP) or a PDF.');
+          await HS.api('/api/proof', { method: 'POST', body: { t: token, fileName: file.name, mime: payload.mime, data: payload.data, note: $('note').value } });
+          file = null; await load();
+        } catch (e) { err(e.message); HS.busy(btn, false); }
+      });
+    }
+    var copyR = $('copyR'); if (copyR) copyR.addEventListener('click', function () { HS.copy($('rlink').value, copyR); });
+    var ap = $('approve');
+    if (ap) ap.addEventListener('click', async function () {
+      if (!confirm('Release ' + HS.kes(state.payment.amount_kes_display) + ' to ' + state.payment.recipient_name + '? This cannot be undone.')) return;
+      var btn = this; HS.busy(btn, true, 'Releasing on Stellar testnet'); err('');
+      try { await HS.api('/api/decision', { method: 'POST', body: { t: token, action: 'approve' } }); await load(); }
+      catch (e) { err(e.message); HS.busy(btn, false); }
+    });
+    var rt = $('rejectToggle'); if (rt) rt.addEventListener('click', function () { $('rejectBox').classList.toggle('hidden'); });
+    var rj = $('reject');
+    if (rj) rj.addEventListener('click', async function () {
+      var btn = this; HS.busy(btn, true, 'Sending back'); err('');
+      try { await HS.api('/api/decision', { method: 'POST', body: { t: token, action: 'reject', reason: $('reason').value } }); await load(); }
+      catch (e) { err(e.message); HS.busy(btn, false); }
+    });
+    var rf = $('refund');
+    if (rf) rf.addEventListener('click', async function () {
+      var btn = this; HS.busy(btn, true, 'Returning on Stellar testnet'); err('');
+      try { await HS.api('/api/refund', { method: 'POST', body: { t: token } }); await load(); }
+      catch (e) { err(e.message); HS.busy(btn, false); }
+    });
+  }
+
+  if (!token) {
+    $('loading').classList.add('hidden');
+    $('fatal').textContent = 'This page needs a payment link. Open the link from your email or message.';
+    $('fatal').classList.add('show');
+  } else {
+    load();
+    setInterval(function () { if (!document.hidden) load(); }, 15000);
+  }
+})();
+</script>
+</body>
+</html>

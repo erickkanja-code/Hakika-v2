@@ -1,0 +1,16 @@
+{
+  "name": "hakikasend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HakikaSend: conditional payments to Kenya, released on proof. Stellar testnet.",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "escrow-test": "node scripts/escrow-test.js"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "16.3.1",
+    "@supabase/supabase-js": "2.118.0",
+    "resend": "6.34.1"
+  }
+}

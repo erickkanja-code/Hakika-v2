@@ -3,463 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hakika — Send with certainty</title>
+<title>HakikaSend, send to Kenya with certainty</title>
+<meta name="description" content="Send money home to Kenya for a purpose. It is released when the proof arrives.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0D0D0D;--white:#F2F0EB;--amber:#F0A500;--gray:#888580;--dark2:#161614;--border:#2A2A27;--wborder:#D5D2CB}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(13,13,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
-.logo{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--white);text-decoration:none}
-.logo span{color:var(--amber)}
-.nav-r{display:flex;align-items:center;gap:32px}
-.nav-r a{font-size:14px;color:var(--gray);text-decoration:none;transition:color .2s}
-.nav-r a:hover{color:var(--white)}
-.nav-btn{background:var(--amber)!important;color:var(--black)!important;padding:10px 22px;border-radius:100px;font-weight:600!important;font-size:14px;transition:opacity .2s}
-.nav-btn:hover{opacity:.88!important;color:var(--black)!important}
-.btn-amber{background:var(--amber);color:var(--black);padding:15px 32px;border:none;border-radius:100px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s}
-.btn-amber:hover{opacity:.85}
-.btn-outline{background:transparent;color:var(--white);padding:15px 32px;border:1px solid var(--border);border-radius:100px;font-family:'Inter',sans-serif;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s}
-.btn-outline:hover{border-color:var(--gray)}
-/* HERO */
-.hero{min-height:100vh;padding:160px 52px 100px;display:flex;flex-direction:column;justify-content:center}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--gray);font-size:12px;padding:6px 16px;border-radius:100px;margin-bottom:44px;letter-spacing:.03em}
-.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0}
-.hero-h{font-family:'Archivo Black',sans-serif;font-size:clamp(62px,9.5vw,134px);line-height:.92;letter-spacing:-3.5px;color:var(--white);max-width:1100px}
-.hero-h .amber{color:var(--amber)}
-.hero-bottom{display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:end;margin-top:64px;border-top:1px solid var(--border);padding-top:48px}
-.hero-sub{font-size:17px;font-weight:300;color:var(--gray);line-height:1.7;max-width:420px}
-.hero-ctas{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.hero-note{font-size:13px;color:#555;margin-top:4px}
-/* COUNTRIES STRIP */
-.countries{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 52px;display:flex;align-items:center;justify-content:center;gap:0}
-.country-item{display:flex;align-items:center;gap:12px;padding:0 40px;border-right:1px solid var(--border)}
-.country-item:last-child{border-right:none}
-.country-flag{font-size:24px}
-.country-info strong{display:block;font-size:14px;font-weight:600;color:var(--white);font-family:'Inter',sans-serif}
-.country-info span{font-size:12px;color:var(--gray)}
-/* TICKER */
-.ticker{background:var(--amber);padding:13px 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-flex;animation:tick 28s linear infinite}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ti{font-family:'Archivo Black',sans-serif;font-size:13px;color:var(--black);padding:0 28px;letter-spacing:.02em}
-.ts{color:rgba(0,0,0,.3)}
-/* STATEMENT */
-.statement{background:var(--white);padding:120px 52px}
-.statement-inner{max-width:1200px;margin:0 auto}
-.statement h2{font-family:'Archivo Black',sans-serif;font-size:clamp(42px,6vw,88px);line-height:.94;letter-spacing:-2.5px;color:var(--black);max-width:920px;margin-bottom:56px}
-.st-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;border-top:1px solid var(--wborder);padding-top:48px}
-.st-col p{font-size:17px;color:#3E3C39;line-height:1.72;max-width:460px}
-.st-col p+p{margin-top:18px}
-.st-stat{margin-top:40px;padding-top:32px;border-top:1px solid var(--wborder)}
-.st-stat-n{font-family:'Archivo Black',sans-serif;font-size:64px;color:var(--black);line-height:1;letter-spacing:-2px}
-.st-stat-l{font-size:14px;color:#888;margin-top:6px;max-width:260px;line-height:1.5}
-/* HOW */
-.how{background:var(--black);padding:120px 52px}
-.how-inner{max-width:1200px;margin:0 auto}
-.how-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px}
-.how-top h2{font-family:'Archivo Black',sans-serif;font-size:clamp(42px,5.5vw,76px);line-height:.95;letter-spacing:-2px;color:var(--white);max-width:480px}
-.how-top p{font-size:16px;color:var(--gray);max-width:320px;line-height:1.68}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border)}
-.step{padding:44px 32px;border-right:1px solid var(--border)}
-.step:last-child{border-right:none}
-.step-n{font-family:'Archivo Black',sans-serif;font-size:52px;color:var(--border);line-height:1;margin-bottom:28px}
-.step-title{font-family:'Archivo Black',sans-serif;font-size:19px;color:var(--white);margin-bottom:12px;letter-spacing:-.3px;line-height:1.1}
-.step-desc{font-size:14px;color:var(--gray);line-height:1.68}
-/* DEMO */
-.demo-section{background:var(--dark2);padding:120px 52px}
-.demo-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:100px;align-items:center}
-.demo-left h2{font-family:'Archivo Black',sans-serif;font-size:clamp(40px,5vw,68px);line-height:.96;letter-spacing:-2px;color:var(--white);margin-bottom:28px}
-.demo-left p{font-size:16px;color:var(--gray);line-height:1.72;max-width:420px;margin-bottom:12px}
-.demo-left p strong{color:var(--white);font-weight:500}
-.demo-trigger{display:inline-flex;align-items:center;gap:10px;background:none;border:none;color:var(--amber);font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-top:20px;padding:0}
-.demo-trigger svg{transition:transform .2s}
-.demo-trigger:hover svg{transform:translateX(4px)}
-.demo-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
-.dc-top{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.dc-top-title{font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--white);letter-spacing:.08em}
-.dc-dots{display:flex;gap:5px}
-.dc-dot{width:8px;height:8px;border-radius:50%;background:#2A2A27}
-.dc-body{padding:22px 20px}
-.dc-row{display:flex;justify-content:space-between;align-items:flex-start;padding:13px 0;border-bottom:1px solid #F0EEE8}
-.dc-row:last-of-type{border-bottom:none}
-.dc-key{font-size:11px;color:#888;font-family:'Inter',sans-serif;margin-bottom:3px}
-.dc-val{font-size:14px;font-weight:600;color:#0D0D0D;font-family:'Inter',sans-serif}
-.dc-amount{font-family:'Archivo Black',sans-serif;font-size:30px;color:#0D0D0D;line-height:1;letter-spacing:-1px}
-.badge-wait{background:#FFF3E0;color:#C85000;font-size:10px;font-weight:600;padding:4px 10px;border-radius:100px;font-family:'Inter',sans-serif;letter-spacing:.02em}
-.badge-done{background:#E6F7ED;color:#145A2E;font-size:10px;font-weight:600;padding:4px 10px;border-radius:100px;font-family:'Inter',sans-serif;letter-spacing:.02em;display:none}
-.dc-proof{margin:14px 0;background:#F8F6F2;border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
-.dc-proof-ico{width:34px;height:34px;background:#EDEBE6;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.dc-proof-txt{font-size:12px;color:#666;font-family:'Inter',sans-serif;line-height:1.45}
-.dc-proof-txt strong{display:block;font-size:13px;color:#0D0D0D;margin-bottom:2px;font-weight:600}
-.dc-release{width:100%;background:var(--black);color:#fff;border:none;border-radius:8px;padding:13px;font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:.04em;cursor:pointer;transition:background .25s;margin-top:2px}
-.dc-release:hover{background:#222}
-.dc-release.done{background:#1A6B3A}
-/* SCENARIOS */
-.scenarios-section{background:var(--white);padding:120px 52px}
-.scenarios-inner{max-width:1200px;margin:0 auto}
-.scenarios-inner h2{font-family:'Archivo Black',sans-serif;font-size:clamp(44px,6.5vw,90px);line-height:.93;letter-spacing:-2.5px;color:var(--black);margin-bottom:72px}
-.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--wborder)}
-.sc-card{padding:52px 44px;position:relative}
-.sc-card:nth-child(1){background:var(--white)}
-.sc-card:nth-child(2){background:var(--black)}
-.sc-card:nth-child(3){background:#1A1A17}
-.sc-card:nth-child(4){background:var(--white)}
-.sc-icon{width:48px;height:48px;margin-bottom:28px;display:flex;align-items:center;justify-content:center}
-.sc-icon svg{width:32px;height:32px}
-.sc-card:nth-child(1) .sc-icon svg,.sc-card:nth-child(4) .sc-icon svg{stroke:var(--black)}
-.sc-card:nth-child(2) .sc-icon svg,.sc-card:nth-child(3) .sc-icon svg{stroke:var(--amber)}
-.sc-title{font-family:'Archivo Black',sans-serif;font-size:24px;letter-spacing:-.5px;line-height:1.06;margin-bottom:16px}
-.sc-card:nth-child(1) .sc-title,.sc-card:nth-child(4) .sc-title{color:var(--black)}
-.sc-card:nth-child(2) .sc-title,.sc-card:nth-child(3) .sc-title{color:var(--white)}
-.sc-country{font-size:11px;font-weight:600;letter-spacing:.06em;margin-bottom:10px;opacity:.6}
-.sc-card:nth-child(1) .sc-country,.sc-card:nth-child(4) .sc-country{color:var(--black)}
-.sc-card:nth-child(2) .sc-country,.sc-card:nth-child(3) .sc-country{color:var(--amber)}
-.sc-story{font-size:15px;line-height:1.72}
-.sc-card:nth-child(1) .sc-story,.sc-card:nth-child(4) .sc-story{color:#4A4845}
-.sc-card:nth-child(2) .sc-story,.sc-card:nth-child(3) .sc-story{color:var(--gray)}
-.sc-payout{font-size:12px;margin-top:14px;padding:8px 12px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
-.sc-card:nth-child(1) .sc-payout,.sc-card:nth-child(4) .sc-payout{background:#F0EDE8;color:#555}
-.sc-card:nth-child(2) .sc-payout,.sc-card:nth-child(3) .sc-payout{background:rgba(240,165,0,.1);color:var(--amber)}
-.sc-outcome{margin-top:16px;font-size:13px;font-weight:600;letter-spacing:.02em}
-.sc-card:nth-child(1) .sc-outcome,.sc-card:nth-child(4) .sc-outcome{color:var(--black)}
-.sc-card:nth-child(2) .sc-outcome,.sc-card:nth-child(3) .sc-outcome{color:var(--amber)}
-/* COMPARE */
-.compare-section{background:var(--black);padding:120px 52px}
-.compare-inner{max-width:1200px;margin:0 auto}
-.compare-inner h2{font-family:'Archivo Black',sans-serif;font-size:clamp(42px,5.5vw,76px);letter-spacing:-2px;line-height:.95;color:var(--white);margin-bottom:64px}
-table{width:100%;border-collapse:collapse}
-th{font-size:13px;font-weight:500;color:var(--gray);padding:14px 20px;text-align:left;border-bottom:1px solid var(--border)}
-th.hi{color:var(--white);font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:.02em}
-td{padding:17px 20px;border-bottom:1px solid var(--border);font-size:14px;color:#555;vertical-align:middle}
-td.feat{color:var(--gray)}
-td.hi{color:var(--white);font-weight:600}
-.ck{color:var(--amber);font-size:18px;font-weight:700}
-.cx{color:#333}
-tr:last-child td{border-bottom:none}
-/* SIGNUP */
-.signup-section{background:var(--amber);padding:120px 52px}
-.signup-inner{max-width:960px;margin:0 auto}
-.signup-inner h2{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,8vw,110px);line-height:.91;letter-spacing:-3px;color:var(--black);margin-bottom:24px}
-.signup-inner p{font-size:19px;color:rgba(0,0,0,.55);font-weight:300;margin-bottom:40px;line-height:1.65;max-width:480px}
-.signup-cta{display:inline-block;background:var(--black);color:var(--amber);padding:17px 36px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:14px;letter-spacing:.04em;text-decoration:none;transition:opacity .2s}
-.signup-cta:hover{opacity:.85}
-.signup-note{margin-top:20px;font-size:13px;color:rgba(0,0,0,.42)}
-footer{background:var(--black);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
-.f-logo{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--white)}
-.f-logo span{color:var(--amber)}
-.f-note{font-size:13px;color:var(--gray)}
-.f-links{display:flex;gap:24px;list-style:none}
-.f-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
-.f-links a:hover{color:var(--white)}
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--amber);color:var(--black);padding:13px 28px;border-radius:100px;font-size:13px;font-weight:700;font-family:'Archivo Black',sans-serif;opacity:0;transition:all .3s;pointer-events:none;z-index:999}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:960px){
-  nav{padding:16px 24px}
-  .nav-r a:not(.nav-btn){display:none}
-  .hero{padding:130px 24px 80px}
-  .hero-bottom{grid-template-columns:1fr;gap:36px}
-  .countries{padding:20px 24px;flex-wrap:wrap;gap:16px}
-  .country-item{border-right:none;padding:0 20px}
-  .statement,.how,.demo-section,.scenarios-section,.compare-section,.signup-section{padding-left:24px;padding-right:24px}
-  .st-cols{grid-template-columns:1fr}
-  .how-top{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:48px}
-  .steps{grid-template-columns:1fr 1fr}
-  .step{border-right:none;border-bottom:1px solid var(--border)}
-  .demo-inner{grid-template-columns:1fr}
-  .sc-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
-}
-@media(max-width:600px){
-  .hero-h{font-size:52px;letter-spacing:-2px}
-  .steps{grid-template-columns:1fr}
-  .sc-card{padding:40px 28px}
-}
-@media(prefers-reduced-motion:reduce){.ticker-inner{animation:none}}
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-*, *::before, *::after {
-  max-width: 100%;
-}
-@media(max-width:960px){
-  .hero-bottom,
-  .demo-inner,
-  .st-cols,
-  .sc-grid,
-  .steps {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .hero-bottom > *,
-  .demo-inner > *,
-  .st-cols > *,
-  .sc-grid > *,
-  .steps > * {
-    min-width: 0;
-  }
-}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="logo">Hakika<span>.</span></a>
+  <a href="/" class="logo"><svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="42" height="140" fill="#F2F0EB"/><rect x="128" y="30" width="42" height="140" fill="#F2F0EB"/><circle cx="100" cy="100" r="41" fill="#0D0D0D"/><circle cx="100" cy="100" r="33" fill="#F0A500"/></svg>HakikaSend</a>
   <div class="nav-r">
-    <a href="how-it-works.html">How it works</a>
-    <a href="faq.html">FAQ</a>
-    <a href="early-access.html" class="nav-btn">Get early access</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/app/" class="nav-btn">Open the app</a>
   </div>
 </nav>
 
-
 <section class="hero">
-  <div class="hero-tag"><span class="hero-tag-dot"></span>Now live across West and East Africa · Launching Nov 2026</div>
+  <div class="hero-tag"><span class="hero-tag-dot"></span>Early access is open</div>
   <h1 class="hero-h">Send money<br>home. Know<br>exactly where<br><span class="amber">it goes.</span></h1>
   <div class="hero-bottom">
-    <p class="hero-sub">Fast transfers for everyday sending. Conditional escrow when it matters. Hakika gives Africans abroad full control over money they send home to Nigeria, Ghana, Kenya and Rwanda — for the first time.</p>
+    <p class="hero-sub">You send money to Kenya for school fees, a hospital bill or a build. HakikaSend holds it until the receipt, invoice or photos arrive, and you release it when you have seen them.</p>
     <div class="hero-ctas">
-      <a href="early-access.html" class="btn-amber">Request early access</a>
-      <a href="how-it-works.html" class="btn-outline">See how it works</a>
-      <p class="hero-note">M-Pesa · MTN MoMo · Bank transfer · No app needed to send</p>
+      <a href="/app/" class="btn-amber">Open the app</a>
+      <a href="/how-it-works.html" class="btn-outline">See how it works</a>
+      <p class="hero-note">Early access runs on test funds, so you can try every step before real money moves.</p>
     </div>
   </div>
 </section>
 
-<!-- COUNTRIES -->
-<div class="countries">
-  <div class="country-item">
-    <span class="country-flag">🇳🇬</span>
-    <div class="country-info"><strong>Nigeria</strong><span>MTN MoMo · Bank transfer</span></div>
-  </div>
-  <div class="country-item">
-    <span class="country-flag">🇬🇭</span>
-    <div class="country-info"><strong>Ghana</strong><span>MTN MoMo · Vodafone Cash</span></div>
-  </div>
-  <div class="country-item">
-    <span class="country-flag">🇰🇪</span>
-    <div class="country-info"><strong>Kenya</strong><span>M-Pesa · Airtel Money</span></div>
-  </div>
-  <div class="country-item">
-    <span class="country-flag">🇷🇼</span>
-    <div class="country-info"><strong>Rwanda</strong><span>MTN MoMo · Airtel Money</span></div>
-  </div>
-</div>
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ti">Send with certainty</span><span class="ts"> · </span>
-    <span class="ti">Nigeria · Ghana · Kenya · Rwanda</span><span class="ts"> · </span>
-    <span class="ti">Blockchain-enforced escrow</span><span class="ts"> · </span>
-    <span class="ti">Auto-return if unproved</span><span class="ts"> · </span>
-    <span class="ti">MTN MoMo · M-Pesa · Bank transfer</span><span class="ts"> · </span>
-    <span class="ti">Standard transfers too</span><span class="ts"> · </span>
-    <span class="ti">Send with certainty</span><span class="ts"> · </span>
-    <span class="ti">Nigeria · Ghana · Kenya · Rwanda</span><span class="ts"> · </span>
-    <span class="ti">Blockchain-enforced escrow</span><span class="ts"> · </span>
-    <span class="ti">Auto-return if unproved</span><span class="ts"> · </span>
-    <span class="ti">MTN MoMo · M-Pesa · Bank transfer</span><span class="ts"> · </span>
-    <span class="ti">Standard transfers too</span><span class="ts"> · </span>
-  </div>
+<div class="strip">
+  <div class="strip-item"><strong>M-Pesa</strong><span>Main payout</span></div>
+  <div class="strip-item"><strong>Airtel Money</strong><span>Planned after M-Pesa</span></div>
+  <div class="strip-item"><strong>Paybill and Till</strong><span>Pay schools and hospitals directly, coming</span></div>
+  <div class="strip-item"><strong>Bank transfer</strong><span>Coming later</span></div>
 </div>
 
+<div class="ticker" aria-hidden="true"><div class="ticker-inner"><span class="ti">Send with certainty</span><span class="ts"> · </span><span class="ti">Built for Kenya</span><span class="ts"> · </span><span class="ti">Released on proof</span><span class="ts"> · </span><span class="ti">Back to you after the deadline</span><span class="ts"> · </span><span class="ti">School fees, hospital bills, builds</span><span class="ts"> · </span><span class="ti">M-Pesa first</span><span class="ts"> · </span><span class="ti">Send with certainty</span><span class="ts"> · </span><span class="ti">Built for Kenya</span><span class="ts"> · </span><span class="ti">Released on proof</span><span class="ts"> · </span><span class="ti">Back to you after the deadline</span><span class="ts"> · </span><span class="ti">School fees, hospital bills, builds</span><span class="ts"> · </span><span class="ti">M-Pesa first</span><span class="ts"> · </span></div></div>
 
-<!-- STATEMENT -->
 <section class="statement">
   <div class="statement-inner">
     <h2>You send the money. Then what?</h2>
     <div class="st-cols">
       <div class="st-col">
-        <p>Every year Africans abroad send over $34 billion home to Nigeria, Ghana, Kenya and Rwanda combined. School fees, hospital bills, a sibling's shop stock, a house under construction. The money lands. Then you cross your fingers.</p>
-        <p>A voice note saying thanks. A blurry photo of a receipt. A call home that goes unanswered for three days. This is not how trust should work.</p>
+        <p>You send KES 45,000 for your niece’s school fees. Your sister says it is paid. Three weeks later the school calls her. It was not.</p>
+        <p>Most of what Kenyans abroad send home has a job to do. School fees, a hospital bill, stock for a shop, cement for a house. The money lands on a phone, and after that you find out only by asking.</p>
         <div class="st-stat">
-          <div class="st-stat-n">$34B+</div>
-          <div class="st-stat-l">sent annually to Nigeria, Ghana, Kenya and Rwanda, with no visibility after arrival</div>
+          <div class="st-stat-n">$4.9B</div>
+          <div class="st-stat-l">sent home to Kenya by the diaspora in 2024, according to the Central Bank of Kenya</div>
         </div>
       </div>
       <div class="st-col">
-        <p>Hakika is not another remittance app. It is the layer that every remittance app is missing — the ability to attach a condition to your money, enforce it automatically, and know for certain that it went where you sent it.</p>
-        <p>Send freely when you want to. Send with conditions when you need to. One app handles both — with M-Pesa, MTN MoMo, Vodafone Cash, and bank transfer settlement on the recipient's end, depending on their country.</p>
-        <p>The escrow sits on the Stellar blockchain. Not with Hakika. Not with a bank. Not with a family member. The conditions you set are enforced by a public ledger nobody can touch.</p>
+        <p>HakikaSend lets you attach a purpose to that money. You say what it is for, what proof you need and by when.</p>
+        <p>The money is locked on the Stellar network while you wait. Your recipient uploads the receipt or photos from a simple link. You look, you approve, and it moves.</p>
+        <p>If the deadline passes and you have not released it, the network lets only you take it back.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="how-inner">
     <div class="how-top">
       <h2>Four steps<br>to certainty.</h2>
-      <p>The whole flow runs in your browser. The recipient needs the Hakika app. No bank, no agent, no middleman holding your money.</p>
+      <p>You use it in your browser. Your recipient opens a link on their phone. No app to install and no wallet for anyone.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><div class="step-title">Send with a purpose</div><p class="step-desc">Enter the amount, name the recipient, state what the money is for. School fees, a hospital bill, shop stock, construction. Any purpose. Your words.</p></div>
-      <div class="step"><div class="step-n">02</div><div class="step-title">Funds lock in escrow</div><p class="step-desc">Your money moves onto the Stellar blockchain. The recipient sees it is there. Nobody can access it until you approve — including Hakika.</p></div>
-      <div class="step"><div class="step-n">03</div><div class="step-title">Recipient uploads proof</div><p class="step-desc">A fee receipt. A hospital invoice. A photo of goods purchased. They upload whatever you agreed. You get a notification the moment it arrives.</p></div>
-      <div class="step"><div class="step-n">04</div><div class="step-title">You release. They receive.</div><p class="step-desc">Review the proof, approve with one tap. Funds settle to M-Pesa, MTN MoMo, or bank transfer instantly. No proof by deadline means money returns to you. Automatically.</p></div>
+      <div class="step"><div class="step-n">01</div><div class="step-title">Send with a purpose</div><p class="step-desc">Enter the amount and the recipient, and say what the money is for in your own words.</p></div>
+      <div class="step"><div class="step-n">02</div><div class="step-title">The money is locked</div><p class="step-desc">It is held on Stellar the moment you confirm. Your recipient can see it is waiting for them.</p></div>
+      <div class="step"><div class="step-n">03</div><div class="step-title">They upload proof</div><p class="step-desc">A fee receipt, a hospital invoice, photos of the work. We email you as soon as it arrives.</p></div>
+      <div class="step"><div class="step-n">04</div><div class="step-title">You release it</div><p class="step-desc">Approve and it settles in seconds. Not released by the deadline? You take it back.</p></div>
     </div>
   </div>
 </section>
-<!-- LIVE DEMO -->
+
 <section class="demo-section">
   <div class="demo-inner">
     <div class="demo-left">
-      <h2>See it.<br>Try it now.</h2>
-      <p><strong>Emeka's mother in Lagos</strong> has uploaded a hospital invoice. He is in London. The money is locked. Proof is in.</p>
-      <p>One tap and it settles to her MTN MoMo wallet.</p>
-      <button class="demo-trigger" onclick="handleRelease()">
-        Release funds now
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </button>
+      <h2>See it.<br>Then try it.</h2>
+      <p><strong>Akinyi in Nyeri</strong> has uploaded the school’s fee receipt. Her brother is in London. The money is locked and the proof is in.</p>
+      <p>One tap and it is released. You can run this whole flow yourself with test funds right now.</p>
+      <a href="/app/" class="btn-amber">Try it with test funds</a>
     </div>
-    <div class="demo-card">
-      <div class="dc-top">
-        <span class="dc-top-title">HAKIKA ESCROW</span>
-        <div class="dc-dots"><div class="dc-dot"></div><div class="dc-dot"></div><div class="dc-dot"></div></div>
-      </div>
+    <div class="demo-card" aria-label="Example payment">
+      <div class="dc-top"><span class="dc-top-title">HAKIKASEND</span><span class="dc-example">Example</span></div>
       <div class="dc-body">
-        <div class="dc-row">
-          <div><div class="dc-key">Sending to</div><div class="dc-val">Mrs. Adaeze O. — Lagos</div></div>
-          <span class="badge-wait" id="badge-wait">Awaiting approval</span>
-          <span class="badge-done" id="badge-done">Released</span>
-        </div>
-        <div class="dc-row">
-          <div><div class="dc-key">Amount locked</div><div class="dc-amount">₦180,000</div></div>
-          <div style="text-align:right"><div class="dc-key">Purpose</div><div class="dc-val">Hospital bill · Surgery</div></div>
-        </div>
-        <div class="dc-row">
-          <div><div class="dc-key">Settles via</div><div class="dc-val">MTN MoMo</div></div>
-          <div style="text-align:right"><div class="dc-key">If no proof</div><div class="dc-val">Auto-return</div></div>
-        </div>
+        <div class="dc-row"><div><div class="dc-key">Sending to</div><div class="dc-val">Akinyi W., Nyeri</div></div><span class="badge-wait">Proof waiting</span></div>
+        <div class="dc-row"><div><div class="dc-key">Amount locked</div><div class="dc-amount">KES 45,000</div></div><div style="text-align:right"><div class="dc-key">Purpose</div><div class="dc-val">School fees, Term 1</div></div></div>
+        <div class="dc-row"><div><div class="dc-key">Pays out to</div><div class="dc-val">M-Pesa</div></div><div style="text-align:right"><div class="dc-key">If not released</div><div class="dc-val">Back to you</div></div></div>
         <div class="dc-proof">
-          <div class="dc-proof-ico">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#888" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </div>
-          <div class="dc-proof-txt"><strong>Invoice uploaded by Mrs. Adaeze</strong>Lagos University Teaching Hospital — surgical admission invoice, stamped</div>
+          <div class="dc-proof-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#888" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+          <div class="dc-proof-txt"><strong>Receipt uploaded by Akinyi</strong>Term 1 fee statement, stamped by the school bursar</div>
         </div>
-        <button class="dc-release" id="dc-btn" onclick="handleRelease()">RELEASE ₦180,000 TO MTN MOMO</button>
+        <a class="dc-release" href="/app/">TRY IT YOURSELF</a>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- SCENARIOS -->
-<section class="scenarios-section" id="scenarios">
+<section class="scenarios-section">
   <div class="scenarios-inner">
-    <h2>Real families.<br>Real situations.</h2>
+    <h2>How families<br>use it.</h2>
     <div class="sc-grid">
       <div class="sc-card">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-        </div>
-        <div class="sc-country">🇳🇬 NIGERIA</div>
-        <div class="sc-title">She sent the money. The school still called.</div>
-        <p class="sc-story">₦150,000 for school fees in Ibadan. A voice note saying it was paid. A call from the headteacher two weeks later. With Hakika, funds stay locked until the fee receipt arrives. She sees it, approves, the child goes to school.</p>
-        <div class="sc-payout">Settles via MTN MoMo</div>
-        <div class="sc-outcome">School fees, confirmed.</div>
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg></div>
+        <div class="sc-place">School fees, Nyeri</div>
+        <div class="sc-title">No more calls from the bursar.</div>
+        <p class="sc-story">The fees stay locked until the stamped receipt is uploaded. You see the school’s name and the amount before a shilling moves. Paying the school’s Paybill directly is coming next.</p>
+        <div class="sc-payout">Released on the fee receipt</div>
       </div>
       <div class="sc-card">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z"/></svg>
-        </div>
-        <div class="sc-country">🇬🇭 GHANA</div>
-        <div class="sc-title">The surgery that kept getting postponed.</div>
-        <p class="sc-story">Two transfers for a knee operation. Both times postponed. The third time he used Hakika — funds locked until the hospital admission slip was uploaded. Surgery happened the next morning. Settled via Vodafone Cash.</p>
-        <div class="sc-payout">Settles via Vodafone Cash</div>
-        <div class="sc-outcome">Operation done. Money accounted for.</div>
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z"/></svg></div>
+        <div class="sc-place">Hospital bill, Kisumu</div>
+        <div class="sc-title">The money is there when the hospital asks.</div>
+        <p class="sc-story">Your mother’s admission needs a deposit. You lock it for the hospital bill with a short deadline. The invoice is uploaded from the ward and you release it the same afternoon.</p>
+        <div class="sc-payout">Released on the hospital invoice</div>
       </div>
       <div class="sc-card">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        </div>
-        <div class="sc-country">🇰🇪 KENYA</div>
-        <div class="sc-title">Her shop. His capital. Zero visibility.</div>
-        <p class="sc-story">KES 60,000 to restock a hardware shop in Kisumu, sent in two tranches. First released on stock photos, second on a monthly sales update. He backed his sister's business without losing sight of a single shilling.</p>
-        <div class="sc-payout">Settles via M-Pesa</div>
-        <div class="sc-outcome">Business funded. Trust intact.</div>
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+        <div class="sc-place">Shop stock, Eldoret</div>
+        <div class="sc-title">Back your sister’s shop and see the stock.</div>
+        <p class="sc-story">KES 60,000 to restock a hardware shop. It is released when the supplier’s invoice arrives, so you know it went on stock and not somewhere else.</p>
+        <div class="sc-payout">Released on the supplier invoice</div>
       </div>
       <div class="sc-card">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        </div>
-        <div class="sc-country">🇷🇼 RWANDA</div>
-        <div class="sc-title">Building a house 4,000 miles away.</div>
-        <p class="sc-story">Foundation, walls, roof. Three milestone payments in Kigali, each releasing on a contractor photo. RWF 3.2M moved across four months, fully accounted for. The house is finished. He has never once set foot on the site.</p>
-        <div class="sc-payout">Settles via MTN MoMo</div>
-        <div class="sc-outcome">Home built. No disputes.</div>
+        <div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+        <div class="sc-place">A build, Machakos</div>
+        <div class="sc-title">Building a house from 7,000 km away.</div>
+        <p class="sc-story">Foundation, walls, roof. Each stage is its own payment to the contractor, released when photos of the finished work come in. You keep a record of every stage.</p>
+        <div class="sc-payout">Released on photos of the work</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPARE -->
 <section class="compare-section">
   <div class="compare-inner">
     <h2>Why not just<br>send direct?</h2>
+    <div class="table-wrap">
     <table>
-      <thead>
-        <tr>
-          <th style="width:34%"></th>
-          <th>Bank / Mobile money</th>
-          <th>NALA / WorldRemit</th>
-          <th class="hi">Hakika</th>
-        </tr>
-      </thead>
+      <thead><tr><th style="width:38%"></th><th>M-Pesa or bank</th><th>Remittance apps</th><th class="hi">HakikaSend</th></tr></thead>
       <tbody>
-        <tr><td class="feat">Fast transfers</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">M-Pesa / MTN MoMo / Vodafone Cash</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">Standard free transfers</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">Nigeria · Ghana · Kenya · Rwanda</td><td>Partial</td><td><span class="ck">✓</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">You control the purpose</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">Proof required before release</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">Auto-return if unused</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
-        <tr><td class="feat">Blockchain-enforced conditions</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
+        <tr><td class="feat">You set what the money is for</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
+        <tr><td class="feat">Proof before the money moves</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
+        <tr><td class="feat">Back to you after the deadline</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
+        <tr><td class="feat">A public record of every step</td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td class="hi"><span class="ck">✓</span></td></tr>
+        <tr><td class="feat">Pay a school or hospital directly</td><td>Paybill, from Kenya</td><td><span class="cx">✗</span></td><td class="hi"><span class="soon">Coming</span></td></tr>
+        <tr><td class="feat">Fast payout to M-Pesa</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="hi"><span class="soon">At launch</span></td></tr>
       </tbody>
     </table>
+    </div>
+    <p class="compare-note">We have not found a consumer remittance product for Kenya that lets the sender attach proof-based conditions to the money.</p>
   </div>
 </section>
 
-<!-- SIGNUP -->
-<section class="signup-section" id="signup">
+<section class="signup-section">
   <div class="signup-inner">
-    <h2>Be first.<br>Join the list.</h2>
-    <p>Takes two minutes. Tell us where you are and what you send money for, and we will let you know when your spot is ready.</p>
-    <a href="early-access.html" class="signup-cta">REQUEST EARLY ACCESS</a>
-    <p class="signup-note">No spam. Just a note when your spot is ready. Launching Nov 2026.</p>
+    <h2>Try it.<br>Right now.</h2>
+    <p>Lock a test payment, upload a receipt from your phone and release it. It takes about two minutes.</p>
+    <a href="/app/" class="signup-cta">OPEN THE APP</a>
+    <p class="signup-note">Want a note when M-Pesa payouts go live? <a href="/early-access.html">Get launch updates</a>.</p>
   </div>
 </section>
 <footer>
-  <div class="f-logo">Hakika<span>.</span></div>
-  <p class="f-note">Nigeria · Ghana · Kenya · Rwanda · Launching Nov 2026</p>
+  <div class="f-logo">HakikaSend</div>
+  <p class="f-note">Built for Kenya. Early access, November 2026.</p>
   <ul class="f-links">
-    <li><a href="how-it-works.html">How it works</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="mailto:erickkanja976@gmail.com">Contact</a></li>
+    <li><a href="/how-it-works.html">How it works</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/early-access.html">Launch updates</a></li>
+    <li><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></li>
   </ul>
 </footer>
-<div class="toast" id="toast"></div>
-<script>
-function handleRelease(){
-  var btn=document.getElementById('dc-btn');
-  if(btn.classList.contains('done'))return;
-  btn.classList.add('done');
-  btn.textContent='₦180,000 RELEASED TO MTN MOMO ✓';
-  document.getElementById('badge-wait').style.display='none';
-  document.getElementById('badge-done').style.display='inline-block';
-  var t=document.getElementById('toast');
-  t.textContent='₦180,000 landed in Mrs. Adaeze\'s MTN MoMo';
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},3500);
-}
-</script>
 </body>
 </html>

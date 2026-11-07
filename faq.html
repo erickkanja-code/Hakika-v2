@@ -3,119 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ — Hakika</title>
+<title>FAQ | HakikaSend</title>
+<meta name="description" content="Plain answers about sending money to Kenya with HakikaSend.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0D0D0D;--white:#F2F0EB;--amber:#F0A500;--gray:#888580;--dark2:#161614;--border:#2A2A27;--wborder:#D5D2CB}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 52px;background:rgba(13,13,13,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
-.logo{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--white);text-decoration:none}
-.logo span{color:var(--amber)}
-.nav-r{display:flex;align-items:center;gap:32px}
-.nav-r a{font-size:14px;color:var(--gray);text-decoration:none;transition:color .2s}
-.nav-r a:hover,.nav-r a.active{color:var(--white)}
-.nav-btn{background:var(--amber)!important;color:var(--black)!important;padding:10px 22px;border-radius:100px;font-weight:600!important;font-size:14px}
-.inner{max-width:1200px;margin:0 auto}
-
-/* HERO */
-.page-hero{padding:160px 52px 100px;background:var(--black)}
-.page-hero-inner{max-width:1200px;margin:0 auto}
-.page-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--gray);font-size:12px;padding:6px 16px;border-radius:100px;margin-bottom:40px;letter-spacing:.03em}
-.page-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
-.page-hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,9vw,120px);line-height:.92;letter-spacing:-3px;color:var(--white);max-width:860px;margin-bottom:48px}
-.page-hero h1 span{color:var(--amber)}
-.page-hero-sub{font-size:19px;font-weight:300;color:var(--gray);max-width:520px;line-height:1.7;border-top:1px solid var(--border);padding-top:40px}
-
-/* FAQ CATEGORIES */
-.faq-section{background:var(--white);padding:120px 52px}
-.faq-inner{max-width:1200px;margin:0 auto}
-.faq-category{margin-bottom:80px}
-.faq-category:last-child{margin-bottom:0}
-.cat-label{font-family:'Archivo Black',sans-serif;font-size:11px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
-.cat-label::after{content:'';flex:1;height:1px;background:var(--wborder)}
-.faq-item{border-bottom:1px solid var(--wborder)}
-.faq-item:first-of-type{border-top:1px solid var(--wborder)}
-.faq-q{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:28px 0;cursor:pointer;list-style:none;-webkit-appearance:none}
-.faq-q::-webkit-details-marker{display:none}
-.faq-q-text{font-family:'Archivo Black',sans-serif;font-size:clamp(17px,2vw,22px);color:var(--black);letter-spacing:-.3px;line-height:1.15;flex:1}
-.faq-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--wborder);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all .25s;color:#888}
-.faq-icon svg{transition:transform .25s}
-details[open] .faq-icon{background:var(--black);border-color:var(--black);color:var(--white)}
-details[open] .faq-icon svg{transform:rotate(45deg)}
-.faq-a{padding:0 0 28px;max-width:680px}
-.faq-a p{font-size:16px;color:#4A4845;line-height:1.75;margin-bottom:14px}
-.faq-a p:last-child{margin-bottom:0}
-.faq-a p strong{color:var(--black);font-weight:600}
-.faq-a ul{margin:12px 0 14px 20px}
-.faq-a ul li{font-size:15px;color:#4A4845;line-height:1.7;margin-bottom:6px}
-.faq-highlight{background:#FFF8EC;border-left:3px solid var(--amber);padding:14px 18px;border-radius:0 6px 6px 0;margin-top:4px}
-.faq-highlight p{font-size:14px;color:#5A4A1E;margin-bottom:0}
-.faq-highlight strong{color:#3A2E0E}
-
-/* CONTACT */
-.contact-section{background:var(--dark2);padding:100px 52px}
-.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.contact-left h2{font-family:'Archivo Black',sans-serif;font-size:clamp(36px,4.5vw,60px);letter-spacing:-1.5px;line-height:.97;color:var(--white);margin-bottom:20px}
-.contact-left p{font-size:16px;color:var(--gray);line-height:1.72;margin-bottom:32px}
-.contact-link{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--black);padding:14px 28px;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;text-decoration:none;transition:opacity .2s}
-.contact-link:hover{opacity:.85}
-.contact-right{padding-top:8px}
-.contact-item{padding:24px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:32px 1fr;gap:16px;align-items:flex-start}
-.contact-item:first-child{padding-top:0}
-.contact-item:last-child{border-bottom:none}
-.contact-item-icon{margin-top:2px}
-.contact-item-icon svg{width:20px;height:20px;stroke:var(--amber)}
-.contact-item-title{font-family:'Archivo Black',sans-serif;font-size:16px;color:var(--white);margin-bottom:4px;letter-spacing:-.2px}
-.contact-item-desc{font-size:14px;color:var(--gray);line-height:1.6}
-
-/* CTA STRIP */
-.cta-strip{background:var(--amber);padding:80px 52px}
-.cta-strip-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
-.cta-strip h2{font-family:'Archivo Black',sans-serif;font-size:clamp(32px,4vw,56px);letter-spacing:-1.5px;line-height:.97;color:var(--black)}
-.btn-dark{background:var(--black);color:var(--amber);padding:15px 32px;border:none;border-radius:100px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s}
-.btn-dark:hover{opacity:.85}
-
-footer{background:var(--black);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
-.f-logo{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--white)}
-.f-logo span{color:var(--amber)}
-.f-note{font-size:13px;color:var(--gray)}
-.f-links{display:flex;gap:24px;list-style:none}
-.f-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
-.f-links a:hover{color:var(--white)}
-
-@media(max-width:960px){
-  nav{padding:16px 24px}
-  .nav-r a:not(.nav-btn){display:none}
-  .page-hero,.faq-section,.contact-section,.cta-strip{padding-left:24px;padding-right:24px}
-  .page-hero{padding-top:130px;padding-bottom:60px}
-  .contact-inner{grid-template-columns:1fr;gap:48px}
-  .cta-strip-inner{flex-direction:column;align-items:flex-start}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
-}
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-*, *::before, *::after {
-  max-width: 100%;
-}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-
-
 <nav>
-  <a href="index.html" class="logo">Hakika<span>.</span></a>
+  <a href="/" class="logo"><svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="42" height="140" fill="#F2F0EB"/><rect x="128" y="30" width="42" height="140" fill="#F2F0EB"/><circle cx="100" cy="100" r="41" fill="#0D0D0D"/><circle cx="100" cy="100" r="33" fill="#F0A500"/></svg>HakikaSend</a>
   <div class="nav-r">
-    <a href="how-it-works.html">How it works</a>
-    <a href="faq.html" class="active">FAQ</a>
-    <a href="early-access.html" class="nav-btn">Get early access</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/faq.html" class="active">FAQ</a>
+    <a href="/app/" class="nav-btn">Open the app</a>
   </div>
 </nav>
 
@@ -123,278 +25,128 @@ html, body {
   <div class="page-hero-inner">
     <div class="page-tag"><span class="page-tag-dot"></span>Honest answers</div>
     <h1>Questions<br>people <span>actually</span><br>ask us.</h1>
-    <p class="page-hero-sub">We have tried to answer everything clearly, without jargon. If something is still unclear, write to us at erickkanja976@gmail.com.</p>
+    <p class="page-hero-sub">If something is still unclear, write to us at erickkanja976@gmail.com.</p>
   </div>
 </section>
-
 
 <section class="faq-section">
   <div class="faq-inner">
-
-    <!-- THE BASICS -->
     <div class="faq-category">
       <div class="cat-label">The basics</div>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What exactly is Hakika?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Hakika is a web-based platform that lets Kenyans in the diaspora send money home with optional conditions attached. You can use it for standard transfers that land in M-Pesa fast, or for conditional transfers where the money is held in escrow until your recipient proves it will be used correctly.</p>
-          <p>The name means "certainty" in Swahili. That is the core promise — you know where your money goes.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What is HakikaSend?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>HakikaSend lets Kenyans abroad send money home for a specific purpose. The money is locked until your recipient shows the proof you asked for, like a fee receipt or a hospital invoice, and you release it.</p><p>The name comes from hakika, Swahili for certainty.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">How is this different from just sending M-Pesa?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>With M-Pesa, the money lands and it is gone. You have no idea what happens to it after that. There is no condition you can attach, no proof you can require, no automatic return if it goes unspent on the right thing.</p>
-          <p>Hakika adds a trust layer on top of the existing payment rails. Standard transfers work exactly like M-Pesa. Conditional transfers let you send money with accountability built in — proof required, deadline enforced, automatic return if conditions are not met.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">How is this different from just sending M-Pesa?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>With a normal transfer, the money lands on a phone and you find out what happened only by asking. With HakikaSend you attach a purpose, a proof requirement and a deadline. Nothing moves until you have seen the proof.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Do I need to download an app?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>The sender's experience runs in a web browser — no app download needed. The recipient back home uses a lightweight Hakika app to receive notifications and upload proof. It is available on Android and iOS and is free to download.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Do I or my recipient need an app?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>No. You use HakikaSend in your browser. Your recipient gets a private link and opens it on their phone. No download, no account and no crypto wallet for either of you.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Who is Hakika built for?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Hakika is built for Africans in the diaspora — primarily in the UK, US, Canada, and Gulf states — who send money home to Nigeria, Ghana, Kenya, or Rwanda. If you have family back home and you care how the money is used, Hakika is for you. It is designed for situations where the sender cares how the money is used, not just that it arrived.</p>
-          <p>The recipient can be any family member in Nigeria, Ghana, Kenya or Rwanda with a smartphone and a mobile money account — MTN MoMo, M-Pesa, Vodafone Cash, or Airtel Money.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Is early access real money?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Not yet. Early access runs on the Stellar test network with test funds, so you can try every step: lock, upload proof, release and take back. The locks and releases are real transactions on the test network. The payout to M-Pesa switches on at full launch.</p></div>
       </details>
     </div>
-
-    <!-- CONDITIONAL PAYMENTS -->
     <div class="faq-category">
-      <div class="cat-label">Conditional payments</div>
-
+      <div class="cat-label">Payments on proof</div>
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What counts as valid proof?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>You decide what proof is required when you set up the payment. You can ask for a school fee receipt, a hospital invoice, a photo of purchased goods, a contractor progress photo, or any document that makes sense for the purpose.</p>
-          <p>The recipient uploads whatever you agreed on. <strong>You — not Hakika — review the proof and decide whether it is satisfactory.</strong> You know what a real receipt from your child's school looks like. We do not try to verify that for you.</p>
-          <div class="faq-highlight"><p><strong>The honest limitation:</strong> a determined person could photograph a fake receipt. Hakika reduces the problem massively — from zero accountability to documented accountability — but it is not fraud-proof. It is significantly better than the current alternative, which is no accountability at all.</p></div>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What counts as valid proof?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>You decide when you set up the payment. A school fee receipt, a hospital invoice, a supplier invoice or photos of finished work. Your recipient uploads a photo or a PDF.</p><p><strong>You review the proof, not HakikaSend.</strong> You know what a real receipt from your child’s school looks like.</p><div class="faq-highlight"><p><strong>The honest limitation:</strong> no technology can stop someone photographing a fake receipt. HakikaSend turns no accountability into documented accountability. It is not fraud-proof.</p></div></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What happens if the deadline passes with no proof?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>The money returns to your wallet automatically. No action required from you. The Stellar blockchain handles the return — it is built into the escrow logic, not a manual process on our end.</p>
-          <p>You will receive a notification when the deadline passes and confirmation when the funds have returned to you.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What if the proof is not right?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Send it back with a reason, like “the receipt has no school stamp”. The money stays locked and your recipient can upload again before the deadline.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Can I cancel an escrow once it has been sent?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Yes, as long as the recipient has not yet submitted proof. Once proof is submitted, the escrow enters review mode and cancellation requires both parties to agree. Once you have approved and released, the transaction is final and cannot be reversed.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What happens if the deadline passes?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>If you have not released the money by the deadline, it can no longer go to the recipient. From that moment only your account can claim it back, and you do it with one tap on your payment page. That rule is part of the lock on the Stellar network.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Can I send money in stages, not all at once?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Yes. Milestone payments let you break a total amount into tranches, each with its own proof requirement and deadline. You might release 30% on a stock photo, another 40% on a sales update, and the final 30% on a month-end report.</p>
-          <p>This is particularly useful for construction, business funding, or any project where progress happens in verifiable stages.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Can I cancel before the deadline?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>No. Once the money is locked it stays locked until you release it or the deadline passes. That is what makes it dependable for your recipient. Pick a deadline that gives them enough time.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-text">Can I pay in stages, like for a build?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Yes, by making each stage its own payment. For example one for the foundation, one for the walls and one for the roof, each released on photos of that stage.</p></div>
       </details>
     </div>
-
-    <!-- MONEY AND FEES -->
     <div class="faq-category">
       <div class="cat-label">Money and fees</div>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What currencies can I send from?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>At launch, Hakika supports sending from GBP, USD, EUR, and AED. Recipients receive in their local currency — NGN to MTN MoMo or bank in Nigeria, GHS to MTN MoMo or Vodafone Cash in Ghana, KES to M-Pesa in Kenya, and RWF to MTN MoMo in Rwanda. Additional send currencies will be added as we expand.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Which M-Pesa numbers and Paybills will work?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Payouts go to M-Pesa first, with Airtel Money planned after that. Paying a school, hospital or landlord straight to their Paybill or Till number is the next feature we are building.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What are the fees?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Standard transfers carry a small flat fee plus the exchange rate margin — competitive with other remittance services and shown to you clearly before you confirm.</p>
-          <p>Conditional escrow payments carry an additional small percentage fee on the transferred amount. This covers the blockchain settlement and the escrow infrastructure. The exact fee is always displayed before you confirm — there are no hidden charges.</p>
-          <div class="faq-highlight"><p><strong>Exact fee schedule:</strong> We will publish the full fee table at launch. Early access users will benefit from reduced fees during the initial period.</p></div>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What if I enter the wrong number?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Nothing is paid out until you approve the proof, so you have time to notice. Check the name on the payment page before you release.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Is my money safe while it is in escrow?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Escrow funds sit on the Stellar blockchain, not in a Hakika bank account. This means:</p>
-          <ul>
-            <li>If Hakika shut down tomorrow, your escrowed funds would still be accessible on-chain</li>
-            <li>Nobody at Hakika can move your funds without your approval</li>
-            <li>The escrow conditions are written into the blockchain transaction itself — they cannot be altered after the fact</li>
-          </ul>
-          <p>This is one of the core reasons we built on Stellar rather than using a traditional escrow model.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What are the fees?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Early access is free. Before any real money moves we will publish every fee, and you will always see the fee and the exchange rate before you confirm a payment.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">How long does a transfer actually take?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Standard transfers: the money lands in the recipient's mobile wallet within minutes, typically under 5. Stellar settles in 3 to 5 seconds — the small remaining delay is the M-Pesa disbursement process.</p>
-          <p>Conditional transfers: the funds lock on Stellar immediately. The time to M-Pesa depends on when the recipient uploads proof and when you release — but the moment you approve, it settles in seconds via their local mobile money provider.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">How long does it take?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>The lock and the release each settle on Stellar in a few seconds. The rest depends on how quickly your recipient uploads proof and you review it.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-text">Which currencies can I send from?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>In early access amounts are shown in KES at an illustrative rate. We will confirm the first live send currencies before full launch. We plan to start with the currencies most Kenyans abroad earn in, like GBP, USD, EUR, CAD and AED.</p></div>
       </details>
     </div>
-
-        <!-- TRUST AND SECURITY -->
     <div class="faq-category">
       <div class="cat-label">Trust and security</div>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Does my recipient need to know about blockchain?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>No. From the recipient's perspective, Hakika is just an app where they receive a notification, upload a photo or document, and then receive money in their M-Pesa. The blockchain layer is completely invisible to them.</p>
-          <p>The recipient never needs to understand Stellar, create a crypto wallet, or interact with any blockchain interface. They just receive a notification, upload a document if required, and collect money via their normal mobile wallet.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Who holds the money while it is locked?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>It sits on the Stellar network in a locked balance, not in a HakikaSend bank account. Two rules are written into that lock: before the deadline only your recipient can receive it, and from the deadline on only you can claim it back.</p><p>In this first version, the release step is carried out by our app when you tap approve, so neither of you has to manage keys. The deadline rule is enforced by the network itself.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What stops someone from submitting a fake receipt?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Nothing technical prevents someone from uploading a fake document. Hakika does not use AI to verify receipts — we think that would be unreliable and create a false sense of security.</p>
-          <p>What Hakika provides is a clear deterrent and a paper trail. The recipient knows you will be reviewing the document. They know the submission is timestamped on a public blockchain. The combination of accountability and your own knowledge of what a genuine document looks like is more effective than any automated check.</p>
-          <p>We are honest about this limitation. Hakika turns a situation of zero accountability into documented, verifiable accountability. It is a significant improvement, not a perfect system.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Does my recipient need to know anything about blockchain?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>No. They see a link, the amount, what you need from them and an upload button.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">Is Hakika regulated?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Hakika is currently in early access and operating in a pre-launch phase. We are actively working through the regulatory requirements for money transfer services in Kenya and relevant sending countries. Full licensing details will be published before the public launch.</p>
-          <p>If you have specific regulatory questions, write to us at erickkanja976@gmail.com and we will respond honestly about where we stand.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">Is HakikaSend regulated?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>Early access uses test funds only, so no real money is handled. Before real money moves we will complete the approvals needed in Kenya, including under the Virtual Asset Service Providers Act, and publish the details.</p><p>Questions? Write to <a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a> and we will tell you plainly where we stand.</p></div>
       </details>
-
       <details class="faq-item">
-        <summary class="faq-q">
-          <span class="faq-q-text">What happens to my data?</span>
-          <span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span>
-        </summary>
-        <div class="faq-a">
-          <p>Transaction metadata — amounts, timestamps, wallet addresses — lives on the public Stellar blockchain. Your name, contact details, uploaded documents, and personal information are stored on Hakika's servers and are never published publicly.</p>
-          <p>We do not sell your data. We do not use it for advertising. A full privacy policy will be published at launch.</p>
-        </div>
+        <summary class="faq-q"><span class="faq-q-text">What happens to my data?</span><span class="faq-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></span></summary>
+        <div class="faq-a"><p>The lock, release and return transactions are public on the Stellar ledger, but they show only wallet addresses. Your name, contact details and uploaded documents are kept in private storage and are never published. We do not sell your data.</p></div>
       </details>
     </div>
-
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section">
   <div class="contact-inner">
     <div class="contact-left">
       <h2>Still have<br>a question?</h2>
-      <p>We read every email. If your question is not answered above, write to us and we will reply within 24 hours.</p>
-      <a href="mailto:erickkanja976@gmail.com" class="contact-link">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        EMAIL US
-      </a>
+      <p>We read every email and reply within a day.</p>
+      <a href="mailto:erickkanja976@gmail.com" class="btn-amber">Email us</a>
     </div>
     <div class="contact-right">
-      <div class="contact-item">
-        <div class="contact-item-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div>
-          <div class="contact-item-title">Security concerns</div>
-          <p class="contact-item-desc">If you believe you have found a security issue, email us immediately at erickkanja976@gmail.com. We take all reports seriously and will respond within hours.</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div>
-          <div class="contact-item-title">Response time</div>
-          <p class="contact-item-desc">We aim to respond to all emails within 24 hours. During early access, we are a small team — but we read everything and respond to everything.</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div>
-          <div class="contact-item-title">Early access users</div>
-          <p class="contact-item-desc">If you are on the early access waitlist, you will receive product updates and the chance to give feedback that directly shapes how Hakika is built.</p>
-        </div>
-      </div>
+      <div class="contact-item"><div class="contact-item-title">Security concerns</div><p class="contact-item-desc">Found a security issue? Email erickkanja976@gmail.com right away. We treat every report seriously.</p></div>
+      <div class="contact-item"><div class="contact-item-title">Early access feedback</div><p class="contact-item-desc">Tried the app? Tell us what confused you. It goes straight into what we build next.</p></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-strip">
   <div class="cta-strip-inner">
     <h2>Ready to send<br>with certainty?</h2>
-    <a href="early-access.html" class="btn-dark">JOIN THE WAITLIST</a>
+    <a href="/app/" class="btn-dark">OPEN THE APP</a>
   </div>
 </section>
-
 <footer>
-  <div class="f-logo">Hakika<span>.</span></div>
-  <p class="f-note">Nigeria · Ghana · Kenya · Rwanda · Launching 2026.</p>
+  <div class="f-logo">HakikaSend</div>
+  <p class="f-note">Built for Kenya. Early access, November 2026.</p>
   <ul class="f-links">
-    <li><a href="how-it-works.html">How it works</a></li>
-    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="/how-it-works.html">How it works</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/early-access.html">Launch updates</a></li>
     <li><a href="mailto:erickkanja976@gmail.com">erickkanja976@gmail.com</a></li>
   </ul>
 </footer>
-
 </body>
 </html>
